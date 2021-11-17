@@ -3,6 +3,7 @@ import {
   requestTokenPayloadState,
   requestTokenOriginState,
   transactionRequestValidationState,
+  transactionRequestSponsoredState,
 } from '@store/transactions/requests';
 import { requestTokenState } from '@store/transactions/requests';
 import { transactionBroadcastErrorState } from '@store/transactions';
@@ -27,6 +28,10 @@ export function useTransactionBroadcastError() {
 
 export function useUpdateTransactionBroadcastError() {
   return useUpdateAtom(transactionBroadcastErrorState);
+}
+
+export function useTransactionRequestSponsored() {
+  return useAtomValue(transactionRequestSponsoredState);
 }
 
 export function useOnCancel() {

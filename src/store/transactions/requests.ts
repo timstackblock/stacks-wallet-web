@@ -47,6 +47,10 @@ export const transactionRequestStxAddressState = atom(
   get => get(requestTokenPayloadState)?.stxAddress
 );
 
+export const transactionRequestSponsoredState = atom(get => {
+  return !!get(requestTokenPayloadState)?.sponsored;
+})
+
 export const transactionRequestNetwork = atom(get => get(requestTokenPayloadState)?.network);
 
 requestTokenPayloadState.debugLabel = 'requestTokenPayloadState';

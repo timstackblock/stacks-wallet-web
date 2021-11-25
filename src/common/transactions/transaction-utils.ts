@@ -47,6 +47,11 @@ function txHasTime(tx: Tx) {
   );
 }
 
+export function calculateFeeFromFeeRate(tx: StacksTransaction, feeRate: number) {
+  const txBytes = new BigNumber(tx.serialize().byteLength);
+  return txBytes.multipliedBy(feeRate);
+}
+
 export function isAddressTransactionWithTransfers(
   transaction: AddressTransactionWithTransfers | Tx
 ): transaction is AddressTransactionWithTransfers {

@@ -21,7 +21,7 @@ describe('<FeeRow />', () => {
           validateOnBlur={false}
           validateOnMount={false}
         >
-          {() => <FeeRow fieldName="fee" isSponsored={false} feeEstimationsError={false} />}
+          {() => <FeeRow fieldName="fee" isSponsored={false} fallbackToCustomFee={false} />}
         </Formik>
       </ProviderWithWalletAndRequestToken>
     );

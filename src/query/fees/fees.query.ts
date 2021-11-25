@@ -12,6 +12,7 @@ const feeEstimationsQueryOptions = {
   refetchOnMount: false,
   refetchInterval: false,
   refetchOnReconnect: false,
+  retry: true,
 } as const;
 
 export function useGetFeeEstimations(transactionPayload: string, estimatedLen: number | null) {
@@ -25,13 +26,26 @@ export function useGetFeeEstimations(transactionPayload: string, estimatedLen: n
         estimated_len: estimatedLen,
       }),
     });
+
+    console.log({ response });
+
+    console.log('is resp ok', response.ok);
+    if (!response.ok) {
+      console.log('xxxxxxxxxxxxxxxxxxxxxxx');
+      throw new Error('sdlksdlf');
+    }
+
     const data = await response.json();
+    console.log({ data });
     return data as TransactionFeeEstimation;
   };
 
   return useQuery({
-    queryKey: ['fee-estimations', transactionPayload],
-    queryFn: fetchFeeEstimations,
+    queryKey: ['fee-estimations', transactionPayload, estimatedLen],
+    queryFn: () => fetchFeeEstimations(),
+    onError(err) {
+      throw err;
+    },
     ...feeEstimationsQueryOptions,
   }) as UseQueryResult<TransactionFeeEstimation, Error>;
 }

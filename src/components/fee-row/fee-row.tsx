@@ -28,10 +28,10 @@ const url = 'https://hiro.so/questions/fee-estimates';
 interface FeeRowProps {
   fieldName: string;
   isSponsored: boolean;
-  feeEstimationsError: boolean;
+  fallbackToCustomFee: boolean;
 }
 export function FeeRow(props: FeeRowProps): JSX.Element {
-  const { feeEstimationsError, fieldName, isSponsored } = props;
+  const { fallbackToCustomFee, fieldName, isSponsored } = props;
 
   const [input, meta, helpers] = useField(fieldName);
   const [fieldWarning, setFieldWarning] = useState<string | undefined>(undefined);
@@ -43,7 +43,7 @@ export function FeeRow(props: FeeRowProps): JSX.Element {
   useEffect(() => {
     // Check for query error on mount and fallback
     // to the custom input if needed
-    if (feeEstimationsError) {
+    if (fallbackToCustomFee) {
       setSelected(Estimations.Custom);
       setIsCustom(true);
     }
@@ -78,8 +78,8 @@ export function FeeRow(props: FeeRowProps): JSX.Element {
     <Stack spacing="base">
       <SpaceBetween position="relative">
         <Stack alignItems="center" isInline>
-          {!feeEstimationsError ? <Caption>Fees</Caption> : <Caption>Enter a custom fee</Caption>}
-          {!feeEstimationsError ? (
+          {!fallbackToCustomFee ? <Caption>Fees</Caption> : <Caption>Enter a custom fee</Caption>}
+          {!fallbackToCustomFee ? (
             <Stack _hover={{ cursor: 'pointer' }}>
               <FeeEstimateItem index={selected} onClick={() => setIsOpen(true)} />
               <FeeEstimateSelect

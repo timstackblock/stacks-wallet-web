@@ -116,7 +116,7 @@ export function SendFormInner(props: SendFormProps) {
         <FeeRow
           fieldName="fee"
           isSponsored={isSponsored}
-          feeEstimationsError={isError || !!feeEstimationsResp?.error}
+          fallbackToCustomFee={isError || !!feeEstimationsResp?.error}
         />
       )}
       <Box mt="auto">

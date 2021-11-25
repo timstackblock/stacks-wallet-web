@@ -9,3 +9,7 @@ export function useFeeEstimationsQuery(
 ): UseQueryResult<TransactionFeeEstimation, Error> {
   return useGetFeeEstimations(transactionPayload, estimatedLen);
 }
+
+export function useLegacyFeeCalculation() {
+  return;
+}

@@ -15,24 +15,24 @@ export function useMagicRecoveryCode() {
   const [magicRecoveryCode, setMagicRecoveryCode] = useMagicRecoveryCodeState();
   const [password, setPassword] = useMagicRecoveryCodePasswordState();
   const { isLoading, setIsLoading, setIsIdle } = useLoading('useMagicRecoveryCode');
-  const { doStoreSeed, doSetPassword, doFinishSignIn } = useWallet();
+  const { storeSeed, setPassword, finishSignIn } = useWallet();
   const [error, setPasswordError] = useState('');
   const { decodedAuthRequest } = useOnboardingState();
-  const doChangeScreen = useChangeScreen();
+  const changeScreen = useChangeScreen();
 
   const handleNavigate = useCallback(() => {
     if (decodedAuthRequest) {
       if (!USERNAMES_ENABLED) {
         setTimeout(() => {
-          void doFinishSignIn(0);
+          void finishSignIn(0);
         }, 1000);
       } else {
-        doChangeScreen(RouteUrls.Username);
+        changeScreen(RouteUrls.Username);
       }
     } else {
-      doChangeScreen(RouteUrls.Home);
+      changeScreen(RouteUrls.Home);
     }
-  }, [doChangeScreen, decodedAuthRequest, doFinishSignIn]);
+  }, [changeScreen, decodedAuthRequest, finishSignIn]);
 
   const handleSubmit = useCallback(async () => {
     if (!magicRecoveryCode) throw Error('No magic recovery seed');
@@ -40,20 +40,20 @@ export function useMagicRecoveryCode() {
     try {
       const codeBuffer = Buffer.from(magicRecoveryCode, 'base64');
       const secretKey = await decrypt(codeBuffer, password);
-      await doStoreSeed({ secretKey });
-      await doSetPassword(password);
+      await storeSeed({ secretKey });
+      await setPassword(password);
       handleNavigate();
     } catch (error) {
       setPasswordError(`Incorrect password, try again.`);
       setIsIdle();
     }
   }, [
-    doSetPassword,
+    setPassword,
     setIsIdle,
     setIsLoading,
     magicRecoveryCode,
     password,
-    doStoreSeed,
+    storeSeed,
     handleNavigate,
   ]);
 
@@ -65,7 +65,7 @@ export function useMagicRecoveryCode() {
     [setPassword]
   );
 
-  const handleBack = () => doChangeScreen(RouteUrls.SignIn);
+  const handleBack = () => changeScreen(RouteUrls.SignIn);
 
   const onSubmit = useCallback(
     async (event: React.FormEvent) => {

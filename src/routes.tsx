@@ -46,7 +46,7 @@ export const Routes: React.FC = () => {
   const { search, pathname } = useLocation();
   const setLastSeen = useUpdateLastSeenStore();
 
-  const doChangeScreen = useChangeScreen();
+  const changeScreen = useChangeScreen();
   const analytics = useAnalytics();
   useSaveAuthRequest();
 
@@ -112,7 +112,7 @@ export const Routes: React.FC = () => {
         <PopupReceive />
       </AccountGateRoute>
       <AccountGateRoute path={RouteUrls.SettingsKey}>
-        <SaveYourKeyView onClose={() => doChangeScreen(RouteUrls.Home)} title="Your Secret Key" />
+        <SaveYourKeyView onClose={() => changeScreen(RouteUrls.Home)} title="Your Secret Key" />
       </AccountGateRoute>
       <RouterRoute path={RouteUrls.AddNetwork} element={<AddNetwork />} />
       <Route path={RouteUrls.SetPassword} element={<SetPasswordPage redirect />} />

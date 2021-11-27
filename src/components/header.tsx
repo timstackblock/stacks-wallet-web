@@ -37,7 +37,7 @@ interface HeaderProps extends FlexProps {
 }
 export const Header: React.FC<HeaderProps> = memo(props => {
   const { onClose, title, hideActions, ...rest } = props;
-  const doChangeScreen = useChangeScreen();
+  const changeScreen = useChangeScreen();
 
   return (
     <Flex
@@ -49,7 +49,7 @@ export const Header: React.FC<HeaderProps> = memo(props => {
     >
       {!title ? (
         <Stack alignItems="center" pt="7px" isInline>
-          <StacksWalletLogo onClick={() => doChangeScreen(RouteUrls.Home)} />
+          <StacksWalletLogo onClick={() => changeScreen(RouteUrls.Home)} />
           {VERSION ? (
             <Caption
               pt="extra-tight"

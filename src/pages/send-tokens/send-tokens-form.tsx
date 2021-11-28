@@ -38,9 +38,7 @@ function SendTokensFormBase() {
   };
 
   return (
-    <PopupContainer
-      header={<Header title="Send" onClose={() => changeScreen(RouteUrls.PopupHome)} />}
-    >
+    <PopupContainer header={<Header title="Send" onClose={() => changeScreen(RouteUrls.Home)} />}>
       <Formik
         initialValues={{
           amount: '',

@@ -1,17 +1,20 @@
-import React, { memo, useCallback } from 'react';
-import { Box, SlideFade, BoxProps, color, Flex } from '@stacks/ui';
-import { Text, Caption } from '@components/typography';
+import React, { useCallback } from 'react';
+import { Box, SlideFade, color, Flex } from '@stacks/ui';
+import { forwardRefWithAs } from '@stacks/ui-core';
+
+import { useAnalytics } from '@common/hooks/analytics/use-analytics';
+import { USERNAMES_ENABLED } from '@common/constants';
 import { useOnClickOutside } from '@common/hooks/use-onclickoutside';
 import { useWallet } from '@common/hooks/use-wallet';
 import { useDrawers } from '@common/hooks/use-drawers';
 import { useChangeScreen } from '@common/hooks/use-change-screen';
 import { RouteUrls } from '@common/types';
 import { Divider } from '@components/divider';
-import { USERNAMES_ENABLED } from '@common/constants';
-import { forwardRefWithAs } from '@stacks/ui-core';
-import { SettingsSelectors } from '@tests/integration/settings.selectors';
+import { Caption } from '@components/typography';
 import { AccountStep } from '@store/ui/ui.models';
-import { useAnalytics } from '@common/hooks/analytics/use-analytics';
+import { SettingsSelectors } from '@tests/integration/settings.selectors';
+
+import { MenuItem } from './components/menu-item';
 
 const MenuWrapper = forwardRefWithAs((props, ref) => (
   <Box
@@ -32,28 +35,7 @@ const MenuWrapper = forwardRefWithAs((props, ref) => (
   />
 ));
 
-const MenuItem: React.FC<BoxProps> = memo(props => {
-  const { onClick, children, ...rest } = props;
-  return (
-    <Text
-      width="100%"
-      px="base"
-      py="base-tight"
-      cursor="pointer"
-      color={color('text-title')}
-      _hover={{ backgroundColor: color('bg-4') }}
-      onClick={e => {
-        onClick?.(e);
-      }}
-      fontSize={1}
-      {...rest}
-    >
-      {children}
-    </Text>
-  );
-});
-
-export const SettingsPopover: React.FC = () => {
+export function SettingsMenu(): JSX.Element {
   const ref = React.useRef<HTMLDivElement | null>(null);
   const { currentAccount, lockWallet, wallet, currentNetworkKey, isSignedIn, encryptedSecretKey } =
     useWallet();
@@ -113,7 +95,7 @@ export const SettingsPopover: React.FC = () => {
               <MenuItem
                 data-testid="settings-view-secret-key"
                 onClick={wrappedCloseCallback(() => {
-                  changeScreen(RouteUrls.SettingsKey);
+                  changeScreen(RouteUrls.SaveSecretKey);
                 })}
               >
                 View Secret Key
@@ -154,7 +136,7 @@ export const SettingsPopover: React.FC = () => {
                   onClick={wrappedCloseCallback(() => {
                     void analytics.track('lock_session');
                     void lockWallet();
-                    changeScreen(RouteUrls.PopupHome);
+                    changeScreen(RouteUrls.Home);
                   })}
                   data-testid="settings-lock"
                 >
@@ -177,4 +159,4 @@ export const SettingsPopover: React.FC = () => {
       )}
     </SlideFade>
   );
-};
+}

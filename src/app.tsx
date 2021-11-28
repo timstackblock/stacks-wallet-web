@@ -9,7 +9,7 @@ import { GlobalStyles } from '@components/global-styles';
 import { VaultLoader } from '@components/vault-loader';
 import { AccountsDrawer } from '@features/accounts-drawer/accounts-drawer';
 import { NetworksDrawer } from '@features/network-drawer/networks-drawer';
-import { SettingsPopover } from '@features/settings-dropdown/settings-popover';
+import { SettingsMenu } from '@features/settings-menu/settings-menu';
 import { AppErrorBoundary } from '@features/errors/app-error-boundary';
 import { EditNonceDrawer } from '@features/edit-nonce-drawer/edit-nonce-drawer';
 import { IncreaseFeeDrawer } from '@features/increase-fee-drawer/increase-fee-drawer';
@@ -17,7 +17,7 @@ import { Devtools } from '@features/devtool/devtools';
 import { initSegment } from '@common/segment-init';
 import { jotaiWrappedReactQueryQueryClient as queryClient } from '@store/common/common.hooks';
 
-import { Routes } from './routes';
+import { AppRoutes } from './app-routes';
 
 const devToolsEnabled = false;
 
@@ -40,12 +40,12 @@ export const App: React.FC = () => {
             <Router>
               <AppErrorBoundary>
                 <VaultLoader />
-                <Routes />
+                <AppRoutes />
                 <AccountsDrawer />
                 <NetworksDrawer />
                 <EditNonceDrawer />
                 <IncreaseFeeDrawer />
-                <SettingsPopover />
+                <SettingsMenu />
               </AppErrorBoundary>
               <Toaster position="bottom-center" toastOptions={{ style: { fontSize: '14px' } }} />
             </Router>

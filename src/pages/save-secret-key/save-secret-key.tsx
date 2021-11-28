@@ -73,16 +73,20 @@ const SecretKeyActions: React.FC<{ handleNext?: () => void } & StackProps> = ({
   );
 };
 
-export const SaveYourKeyView: React.FC<{
+interface SaveSecretKeyProps {
   handleNext?: () => void;
   onClose?: () => void;
   title?: string;
   hideActions?: boolean;
-}> = memo(({ title, handleNext, hideActions, onClose }) => {
+}
+export function SaveSecretKey(props: SaveSecretKeyProps): JSX.Element {
+  const { title, handleNext, hideActions, onClose } = props;
   const analytics = useAnalytics();
+
   useEffect(() => {
-    void analytics.page('view', '/save-your-secret-key');
+    void analytics.page('view', '/save-secret-key');
   }, [analytics]);
+
   return (
     <PopupContainer
       header={
@@ -100,4 +104,4 @@ export const SaveYourKeyView: React.FC<{
       </Stack>
     </PopupContainer>
   );
-});
+}

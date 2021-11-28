@@ -63,6 +63,7 @@ const Form: React.FC<StackProps> = memo(props => {
   );
 });
 
+// TODO: When is this used?
 export const MagicRecoveryCode: React.FC = memo(() => {
   const { onBack } = useMagicRecoveryCode();
   return (

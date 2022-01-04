@@ -15,13 +15,21 @@ export interface ActiveFiatProviderType {
   enabled: boolean;
 }
 
-interface HiroConfig {
-  messages: any;
-  activeFiatProviders: Record<string, ActiveFiatProviderType>;
+interface FeeEstimationsConfig {
+  maxValuesEnabled?: boolean;
+  maxValues?: number[];
 }
 
-const GITHUB_PRIMARY_BRANCH = 'main';
-const githubWalletConfigRawUrl = `https://raw.githubusercontent.com/${GITHUB_ORG}/${GITHUB_REPO}/${GITHUB_PRIMARY_BRANCH}/config/wallet-config.json`;
+interface HiroConfig {
+  messages: any;
+  activeFiatProviders?: Record<string, ActiveFiatProviderType>;
+  feeEstimations?: FeeEstimationsConfig;
+}
+
+// const GITHUB_PRIMARY_BRANCH = 'main';
+const GITHUB_PRIMARY_BRANCH = 'feat/use-wallet-config-for-max-fee-estimations/I2039';
+// const githubWalletConfigRawUrl = `https://raw.githubusercontent.com/${GITHUB_ORG}/${GITHUB_REPO}/${GITHUB_PRIMARY_BRANCH}/config/wallet-config.json`;
+const githubWalletConfigRawUrl = `http://localhost:8000/config/wallet-config.json`;
 
 async function fetchHiroMessages(): Promise<HiroConfig> {
   return fetch(githubWalletConfigRawUrl).then(msg => msg.json());
@@ -53,4 +61,18 @@ export function useHasFiatProviders() {
     activeProviders &&
     Object.keys(activeProviders).reduce((acc, key) => activeProviders[key].enabled || acc, false)
   );
+}
+
+export function useConfigFeeEstimationsEnabled() {
+  const config = useRemoteHiroConfig();
+  if (typeof config?.feeEstimations === 'undefined') return;
+  return config.feeEstimations.maxValuesEnabled;
+}
+
+export function useConfigFeeEstimationsMaxValues() {
+  const config = useRemoteHiroConfig();
+  if (typeof config?.feeEstimations === 'undefined') return;
+  if (!config.feeEstimations.maxValues) return;
+  if (!Array.isArray(config.feeEstimations.maxValues)) return;
+  return config.feeEstimations.maxValues;
 }

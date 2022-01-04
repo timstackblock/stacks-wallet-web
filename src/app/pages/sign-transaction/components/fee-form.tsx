@@ -18,6 +18,7 @@ import {
   getFeeEstimationsWithMaxValues,
   useFeeEstimationsMaxValues,
 } from '@shared/transactions/fee-estimations';
+import { logger } from '@shared/logger';
 
 export function FeeForm(): JSX.Element | null {
   const analytics = useAnalytics();
@@ -34,6 +35,7 @@ export function FeeForm(): JSX.Element | null {
 
   const [, setFeeEstimations] = useFeeEstimationsState();
   const feeEstimationsMaxValues = useFeeEstimationsMaxValues();
+  logger.info({ feeEstimationsMaxValues }, 'feeEstimationsMaxValues');
 
   useEffect(() => {
     if (feeEstimationsResp) {

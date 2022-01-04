@@ -32,6 +32,7 @@ import {
   getFeeEstimationsWithMaxValues,
   useFeeEstimationsMaxValues,
 } from '@shared/transactions/fee-estimations';
+import { logger } from '@shared/logger';
 
 interface SendFormInnerProps {
   assetError: string | undefined;
@@ -50,6 +51,7 @@ export function SendFormInner(props: SendFormInnerProps) {
 
   const [, setFeeEstimations] = useFeeEstimationsState();
   const feeEstimationsMaxValues = useFeeEstimationsMaxValues();
+  logger.info({ feeEstimationsMaxValues }, 'feeEstimationsMaxValues');
   const { selectedAsset } = useSelectedAsset();
   const assets = useTransferableAssets();
   const analytics = useAnalytics();

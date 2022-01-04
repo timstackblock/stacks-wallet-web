@@ -16,9 +16,9 @@ import { useAnalytics } from '@app/common/hooks/analytics/use-analytics';
 import {
   getDefaultSimulatedFeeEstimations,
   getFeeEstimationsWithMaxValues,
-  useFeeEstimationsMaxValues,
 } from '@shared/transactions/fee-estimations';
 import { logger } from '@shared/logger';
+import { useFeeEstimationsMaxValues } from '@app/common/transactions/use-fee-estimations-max-values';
 
 export function FeeForm(): JSX.Element | null {
   const analytics = useAnalytics();

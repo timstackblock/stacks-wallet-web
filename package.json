@@ -85,6 +85,7 @@
     "@emotion/css": "11.7.1",
     "@emotion/react": "11.7.1",
     "@emotion/styled": "11.6.0",
+    "@janniks-stacks/auth": "^3.3.0-1",
     "@janniks-stacks/connect": "^6.4.1-2",
     "@janniks-stacks/connect-react": "^13.0.2-2",
     "@janniks-stacks/connect-ui": "^5.4.0-2",

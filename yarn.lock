@@ -3163,7 +3163,7 @@
   dependencies:
     "@stencil/core" "^2.6.0"
 
-"@stacks/connect@6.4.0", "@stacks/connect@^6.1.0":
+"@stacks/connect@^6.1.0":
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/@stacks/connect/-/connect-6.4.0.tgz#f9d5e83420a818dc59e46b61743b72ea08a301d0"
   integrity sha512-cZTK6esZi71QkSM1IBcXK0OlR8xDWYm8QOOJYboemmj6MR5qnAXNeLfQth6da/RbiWy1BnXic2QVaymrQZFBwA==

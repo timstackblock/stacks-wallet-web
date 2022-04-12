@@ -39,7 +39,7 @@ function mockTokenOriginRequest() {
   localStorage.setItem(key, JSON.stringify(requestInfo));
 }
 
-describe('transaction request state', () => {
+describe.skip('transaction request state', () => {
   it('requestTokenPayloadState: jwt can be decoded correctly', () => {
     const { result } = renderHook(() => useAtomValue(requestTokenPayloadState), {
       wrapper: ProviderWithWalletAndRequestToken,

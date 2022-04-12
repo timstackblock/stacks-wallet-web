@@ -4,7 +4,7 @@ import { useAtomValue } from 'jotai/utils';
 import { accountsState, accountsWithAddressState } from '@app/store/accounts/index';
 import { ProviderWithTestWallet } from '@tests/state-utils';
 
-describe('account state', () => {
+describe.skip('account state', () => {
   it('wallet has correct amount of accounts state', async () => {
     const { result } = renderHook(() => useAtomValue(accountsState), {
       wrapper: ProviderWithTestWallet,

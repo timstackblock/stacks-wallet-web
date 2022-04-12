@@ -3110,15 +3110,15 @@
   resolved "https://registry.yarnpkg.com/@socket.io/component-emitter/-/component-emitter-3.0.0.tgz#8863915676f837d9dad7b76f50cb500c1e9422e9"
   integrity sha512-2pTGuibAXJswAPJjaKisthqS/NOK5ypG4LYT6tEAV0S/mxW0zOIvYvGK0V8w8+SHxAm6vRMSjqSalFXeBAqs+Q==
 
-"@stacks/auth@^3.0.0", "@stacks/auth@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@stacks/auth/-/auth-3.2.0.tgz#22469b8a03c8f57483c9a654882764ae83257543"
-  integrity sha512-HTeaeUzKxHM3iC8WnBJxu4XUpu9X1+lMKPdqwQsDJdqbfxaCLEVrwzpIN/+1FWIco068L4KMbVV4mXyuR0ADHQ==
+"@stacks/auth@^3.3.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@stacks/auth/-/auth-3.5.0.tgz#e78a251849f0b7f4ebff6b1539a8fb0655ce5a70"
+  integrity sha512-eiVeo+kklax8nN7p3T4g2cZu41cPs67v9Q06y522HJvL5HUeZmW4ul0OpMda/M6f5f/NwaEpKOlMO+c9PfzstA==
   dependencies:
-    "@stacks/common" "^3.0.0"
-    "@stacks/encryption" "^3.0.0"
-    "@stacks/network" "^3.2.0"
-    "@stacks/profile" "^3.2.0"
+    "@stacks/common" "^3.3.0"
+    "@stacks/encryption" "^3.3.0"
+    "@stacks/network" "^3.3.0"
+    "@stacks/profile" "^3.3.0"
     c32check "^1.1.3"
     cross-fetch "^3.1.4"
     jsontokens "^3.0.0"
@@ -3137,13 +3137,13 @@
     socket.io-client "^4.0.1"
     ws "^7.4.0"
 
-"@stacks/common@3.0.0", "@stacks/common@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@stacks/common/-/common-3.0.0.tgz#e254ce29b8d62b002f713aa171004e9523eefbec"
-  integrity sha512-48zCfU8zX0r8b8eP2n6l/bicAiFQyHPTMimdBwot9JqgzWW8WqGpcZD3qSZIwV0tBHD5LMLxNY018OqQIH6c5Q==
+"@stacks/common@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@stacks/common/-/common-3.3.0.tgz#d43a3f32981ba8a2b85027b46d84cfb787f8c4eb"
+  integrity sha512-PVZiGGvl1WwUa47PCF5mPq3KGik/e+DXQZ7NqHBwNi5GOpjAo0M6nPSF1R+iSnHQ7DHtfXSoIQz8PlCxlYIYKw==
   dependencies:
     "@types/node" "^14.14.43"
-    bn.js "^4.12.0"
+    bn.js "^5.2.0"
     buffer "^6.0.3"
     cross-fetch "^3.1.4"
 
@@ -3157,17 +3157,17 @@
     buffer "^6.0.3"
     cross-fetch "^3.1.4"
 
-"@stacks/encryption@3.0.0", "@stacks/encryption@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@stacks/encryption/-/encryption-3.0.0.tgz#91a766c559f164fe22efc507e18d5091f0136895"
-  integrity sha512-KGVBDWG/hYkjLQNSQL6btIuVvi07ImrLmYS1tKWlC9W6S1si+xHMl5o6WujdpTmvReiqlnw8oJPHWPhkUFFulg==
+"@stacks/encryption@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@stacks/encryption/-/encryption-3.3.0.tgz#d1b68cbdbcd88ccab48032869db3b5cf51e922b7"
+  integrity sha512-AzN2Yvnemso0Qh7q7aTqJKws1merkINMFoYf0e0DBmY/IjrzLO0j0yoAdU6Ol8OPgnbxmp4CN96DKfJ+Hq2SMg==
   dependencies:
-    "@stacks/common" "^3.0.0"
+    "@stacks/common" "^3.3.0"
     "@types/bn.js" "^4.11.6"
     "@types/node" "^14.14.43"
     bip39 "^3.0.2"
     bitcoinjs-lib "^5.2.0"
-    bn.js "^4.12.0"
+    bn.js "^5.2.0"
     elliptic "^6.5.4"
     randombytes "^2.1.0"
     ripemd160-min "^0.0.6"
@@ -3203,13 +3203,6 @@
     eslint-plugin-import ">=2.23.3"
     eslint-plugin-prettier "4.0.0"
 
-"@stacks/network@3.0.0", "@stacks/network@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@stacks/network/-/network-3.0.0.tgz#b4a7f3de8e4651d5426fc715a90f20b7123b166c"
-  integrity sha512-JJbQqCN8JlJz8bZu7enW9OBkMG5vEfHnp0rdY6AEp3Gzq9JsFD1C0BbbhMv/IqmCcLuAGmMwo+2C1NKCDJBUdQ==
-  dependencies:
-    "@stacks/common" "^3.0.0"
-
 "@stacks/network@3.3.0":
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/@stacks/network/-/network-3.3.0.tgz#1e3b4d0917d1d33720986846de7d0100f36a2610"
@@ -3217,7 +3210,7 @@
   dependencies:
     "@stacks/common" "^3.3.0"
 
-"@stacks/network@^3.2.0", "@stacks/network@^3.3.0":
+"@stacks/network@^3.3.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@stacks/network/-/network-3.5.0.tgz#daba9e957dbe45a354645a6440757d8f5986d33d"
   integrity sha512-qSj2fe7cmB8fLKKEnpeiYoKSLZ8kqwlpV+dC9xhg6izMYl9Zpe4F27WVAbsqf5dU7q2oXRFWQ8xiSIv/8Ha6ng==
@@ -3244,18 +3237,6 @@
   integrity sha512-N+KC3LUL/qSrmjGaFRNaJtBSL1ZBJn5nPEsZf4DpYXDiFhIN1WWDRi79nuuAZD1K6mq+dZWsCwJp8rhI7kLi8w==
   dependencies:
     prettier "2.4.1"
-
-"@stacks/profile@^3.0.0", "@stacks/profile@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@stacks/profile/-/profile-3.2.0.tgz#f5972cc1cdbf10d18446cc662c6a968ea1ec4055"
-  integrity sha512-IjW+LXbb+Tz0nt9t8CXpuCCv/9gZQ8s3Hgz3uEe8HGALvqAAwYc2ZQvHQ0vf58Cdezr1gIbY0OaWm3UkaHKdmg==
-  dependencies:
-    "@stacks/common" "^3.0.0"
-    "@stacks/network" "^3.2.0"
-    "@stacks/transactions" "^3.2.0"
-    jsontokens "^3.0.0"
-    schema-inspector "^2.0.1"
-    zone-file "^2.0.0-beta.3"
 
 "@stacks/profile@^3.3.0":
   version "3.5.0"
@@ -3287,38 +3268,27 @@
   resolved "https://registry.yarnpkg.com/@stacks/stacks-blockchain-api-types/-/stacks-blockchain-api-types-0.65.0.tgz#38cd10571e38f314dbcd6f6244d6042f7d6a8e0a"
   integrity sha512-V0ko6Cge+IP/XV352rHDDPYYz84gSCRbeklyor3FaUdSZFZIXjVM1upIbo5FDQ6Enygbcpve+vpbbajiWMB16A==
 
-"@stacks/storage@3.2.0", "@stacks/storage@^3.0.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@stacks/storage/-/storage-3.2.0.tgz#eb8c26a96eca96d5e7cf55d284e1d4fa07518c15"
-  integrity sha512-turWq288tGOxWZdX0XW157GmNelnUCWl5rw770OZqsC4g4RI8wPYaeBB/M0rhuGP6CDXUds/YImV/WE8o32dxA==
+"@stacks/storage@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@stacks/storage/-/storage-3.3.0.tgz#bcb3f96bada96fd0a3af4d2169a7b40585677d1a"
+  integrity sha512-Rt6X74R6j2LZu4Hlkb3cUmBVblDU55ZFik4tq4kquAwhCWnf7CnUkZY6Sdy50QWCpishlcqCIz7NbFkcxRXIDQ==
   dependencies:
-    "@stacks/auth" "^3.2.0"
-    "@stacks/common" "^3.0.0"
-    "@stacks/encryption" "^3.0.0"
+    "@stacks/auth" "^3.3.0"
+    "@stacks/common" "^3.3.0"
+    "@stacks/encryption" "^3.3.0"
     bitcoinjs-lib "^5.2.0"
     jsontokens "^3.0.0"
 
-"@stacks/transactions@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@stacks/transactions/-/transactions-3.0.0.tgz#0c76f8832bc102e46fc165d5d6f29664640e639c"
-  integrity sha512-icweWBhiuYLOE/kkhBrsVrpydJEBE9dtDAxX6kBkZ2oAn9BTnW/Tozpxr6Zp0kJEx1ZTndINW7xtrJUsdHw7jg==
+"@stacks/storage@^3.3.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@stacks/storage/-/storage-3.5.0.tgz#fb474a6135498cb2259ed64a084a9c52e0b3c3dc"
+  integrity sha512-pLbJYrTPtndpNOlhxhqF5hNL0tOXvuTBzTnE3JPtBsCIjlG0dq/Z2EvOdHZmUxzjRMIUgm7vIGsUALwldHqiIQ==
   dependencies:
-    "@stacks/common" "^3.0.0"
-    "@stacks/network" "^3.0.0"
-    "@types/bn.js" "^4.11.6"
-    "@types/elliptic" "^6.4.12"
-    "@types/node" "^14.14.43"
-    "@types/randombytes" "^2.0.0"
-    "@types/sha.js" "^2.4.0"
-    bn.js "^4.12.0"
-    c32check "^1.1.3"
-    cross-fetch "^3.1.4"
-    elliptic "^6.5.4"
-    lodash "^4.17.20"
-    randombytes "^2.1.0"
-    ripemd160-min "^0.0.6"
-    sha.js "^2.4.11"
-    smart-buffer "^4.1.0"
+    "@stacks/auth" "^3.3.0"
+    "@stacks/common" "^3.3.0"
+    "@stacks/encryption" "^3.3.0"
+    bitcoinjs-lib "^5.2.0"
+    jsontokens "^3.0.0"
 
 "@stacks/transactions@3.3.0":
   version "3.3.0"
@@ -3336,28 +3306,6 @@
     bn.js "^5.2.0"
     c32check "^1.1.3"
     cross-fetch "^3.1.4"
-    lodash.clonedeep "^4.5.0"
-    randombytes "^2.1.0"
-    ripemd160-min "^0.0.6"
-    sha.js "^2.4.11"
-    smart-buffer "^4.1.0"
-
-"@stacks/transactions@^3.0.0", "@stacks/transactions@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@stacks/transactions/-/transactions-3.2.0.tgz#15138d008332bb7a001f93750ca8490531e0fc15"
-  integrity sha512-7exiwNjlUk0kkmNc76ttJXYezGJLLgDTSDGCi396CvJgkdHgSUZefPkBivHOJsMGnNnZcu2QLpWRauQzwIE7qg==
-  dependencies:
-    "@stacks/common" "^3.0.0"
-    "@stacks/network" "^3.2.0"
-    "@types/bn.js" "^4.11.6"
-    "@types/elliptic" "^6.4.12"
-    "@types/node" "^14.14.43"
-    "@types/randombytes" "^2.0.0"
-    "@types/sha.js" "^2.4.0"
-    bn.js "^4.12.0"
-    c32check "^1.1.3"
-    cross-fetch "^3.1.4"
-    elliptic "^6.5.4"
     lodash.clonedeep "^4.5.0"
     randombytes "^2.1.0"
     ripemd160-min "^0.0.6"
@@ -3440,26 +3388,26 @@
     use-events "^1.4.1"
     use-onclickoutside "npm:use-onclickoutside-peer-deps@0.3.1"
 
-"@stacks/wallet-sdk@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@stacks/wallet-sdk/-/wallet-sdk-3.0.0.tgz#20226a38600693ae146b5744d435f6ae4008f04f"
-  integrity sha512-61GnQpg8izW/WEJUSmRF7rq1tC1lghANk4DahENj/vi5hIwEUFbTFnCQ8mshpuFK7I7giaTiugx+qtKrC7xRyw==
+"@stacks/wallet-sdk@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@stacks/wallet-sdk/-/wallet-sdk-3.3.0.tgz#ed9f8c7b6d17ecb439a51627dc4ecc09b96ab94b"
+  integrity sha512-l9kLJKW9iKvucMnCKXNxjaCKobpqdxjlgp4EX69PX1RFpuDdK0zeTgPk0gm/JBPPqgOSJNooH3UX9M2DhjacEw==
   dependencies:
-    "@stacks/auth" "^3.0.0"
-    "@stacks/common" "^3.0.0"
-    "@stacks/encryption" "^3.0.0"
-    "@stacks/network" "^3.0.0"
-    "@stacks/profile" "^3.0.0"
-    "@stacks/storage" "^3.0.0"
-    "@stacks/transactions" "^3.0.0"
-    bip32 "2.0.6"
+    "@stacks/auth" "^3.3.0"
+    "@stacks/common" "^3.3.0"
+    "@stacks/encryption" "^3.3.0"
+    "@stacks/network" "^3.3.0"
+    "@stacks/profile" "^3.3.0"
+    "@stacks/storage" "^3.3.0"
+    "@stacks/transactions" "^3.3.0"
+    bip32 "^2.0.6"
     bip39 "^3.0.2"
-    bitcoinjs-lib "^5.1.6"
-    bn.js "^4.12.0"
+    bitcoinjs-lib "^5.2.0"
+    bn.js "^5.2.0"
     c32check "^1.1.3"
     jsontokens "^3.0.0"
     randombytes "^2.1.0"
-    triplesec "^3.0.27"
+    triplesec "^4.0.3"
     zone-file "^2.0.0-beta.3"
 
 "@stdlib/array-float32@^0.0.x":
@@ -6458,7 +6406,7 @@ bip174@^2.0.1:
   resolved "https://registry.yarnpkg.com/bip174/-/bip174-2.0.1.tgz#39cf8ca99e50ce538fb762589832f4481d07c254"
   integrity sha512-i3X26uKJOkDTAalYAp0Er+qGMDhrbbh2o93/xiPyAN2s25KrClSpe3VXo/7mNJoqA5qfko8rLS2l3RWZgYmjKQ==
 
-bip32@2.0.6, bip32@^2.0.4:
+bip32@2.0.6, bip32@^2.0.4, bip32@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/bip32/-/bip32-2.0.6.tgz#6a81d9f98c4cd57d05150c60d8f9e75121635134"
   integrity sha512-HpV5OMLLGTjSVblmrtYRfFFKuQB+GArM0+XP8HGWfJ5vxYBqo+DesvJwOdC2WJ3bCkZShGf0QIfoIpeomVzVdA==
@@ -6493,7 +6441,7 @@ bitcoin-ops@^1.3.0, bitcoin-ops@^1.4.0:
   resolved "https://registry.yarnpkg.com/bitcoin-ops/-/bitcoin-ops-1.4.1.tgz#e45de620398e22fd4ca6023de43974ff42240278"
   integrity sha512-pef6gxZFztEhaE9RY9HmWVmiIHqCb2OyS4HPKkpc6CIiiOa3Qmuoylxc5P2EkU3w+5eTSifI9SEZC88idAIGow==
 
-bitcoinjs-lib@5.2.0, bitcoinjs-lib@^5.1.6, bitcoinjs-lib@^5.2.0:
+bitcoinjs-lib@5.2.0, bitcoinjs-lib@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/bitcoinjs-lib/-/bitcoinjs-lib-5.2.0.tgz#caf8b5efb04274ded1b67e0706960b93afb9d332"
   integrity sha512-5DcLxGUDejgNBYcieMIUfjORtUeNWl828VWLHJGVKZCb4zIS1oOySTUr0LGmcqJBQgTBz3bGbRQla4FgrdQEIQ==
@@ -6541,7 +6489,7 @@ bluebird@~2.9.24:
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-2.9.34.tgz#2f7b4ec80216328a9fddebdf69c8d4942feff7d8"
   integrity sha1-L3tOyAIWMoqf3evfacjUlC/v99g=
 
-bn.js@5.2.0, bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.11.8, bn.js@^4.11.9, bn.js@^4.12.0, bn.js@^5.0.0, bn.js@^5.1.1, bn.js@^5.2.0:
+bn.js@5.2.0, bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.11.8, bn.js@^4.11.9, bn.js@^5.0.0, bn.js@^5.1.1, bn.js@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-5.2.0.tgz#358860674396c6997771a9d051fcc1b57d4ae002"
   integrity sha512-D7iWRBvnZE8ecXiLj/9wbxH7Tk79fAh8IHaTNq1RWRixsS02W+5qS+iE9yq6RYl0asXx5tw0bLhmT5pIfbSquw==
@@ -7065,11 +7013,6 @@ chokidar@^3.4.2, chokidar@^3.5.1, chokidar@^3.5.2:
     readdirp "~3.6.0"
   optionalDependencies:
     fsevents "~2.3.2"
-
-chownr@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.4.tgz#6fc9d7b42d32a583596337666e7d08084da2cc6b"
-  integrity sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==
 
 chroma-js@2.1.2:
   version "2.1.2"
@@ -10063,13 +10006,6 @@ fs-extra@~9.0.1:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
     universalify "^1.0.0"
-
-fs-minipass@^1.2.7:
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/fs-minipass/-/fs-minipass-1.2.7.tgz#ccff8570841e7fe4265693da88936c55aed7f7c7"
-  integrity sha512-GWSSJGFy4e9GUeCcbIkED+bgAoFyj7XF1mV8rma3QW4NIqX9Kyx79N/PF61H5udOV3aY1IaMLs6pGbH71nlCTA==
-  dependencies:
-    minipass "^2.6.0"
 
 fs-monkey@1.0.3:
   version "1.0.3"
@@ -13150,27 +13086,12 @@ minimist@^1.1.1, minimist@^1.1.3, minimist@^1.2.0, minimist@^1.2.5, "minimist@np
   resolved "https://registry.yarnpkg.com/minimist-lite/-/minimist-lite-2.2.0.tgz#43992acac6bb17e78acb6eee784d1da2f7cc3216"
   integrity sha512-o9M0Iz5ELqCT4NzeaZHBBlV4+ruOGGWV6lVxFoghC6Wvp4W6ECbBBpmDRHdk72O/sMh3QT0c/0XDKhtGlztRZw==
 
-minipass@^2.6.0, minipass@^2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.9.0.tgz#e713762e7d3e32fed803115cf93e04bca9fcc9a6"
-  integrity sha512-wxfUjg9WebH+CUDX/CdbRlh5SmfZiy/hpkxaRI16Y9W56Pa75sWgd/rvFilSgrauD9NyFymP/+JFV3KwzIsJeg==
-  dependencies:
-    safe-buffer "^5.1.2"
-    yallist "^3.0.0"
-
 minipass@^3.1.1:
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/minipass/-/minipass-3.1.6.tgz#3b8150aa688a711a1521af5e8779c1d3bb4f45ee"
   integrity sha512-rty5kpw9/z8SX9dmxblFA6edItUmwJgMeYDZRrwlIVN27i8gysGbznJwUggw2V/FVqFSDdWy040ZPS811DYAqQ==
   dependencies:
     yallist "^4.0.0"
-
-minizlib@^1.3.3:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/minizlib/-/minizlib-1.3.3.tgz#2290de96818a34c29551c8a8d301216bd65a861d"
-  integrity sha512-6ZYMOEnmVsdCeTJVE0W9ZD+pVnE8h9Hma/iOwwRDsdQoePpoX56/8B6z3P9VNwppJuBKNRuFDRNRqRWexT9G9Q==
-  dependencies:
-    minipass "^2.9.0"
 
 mixin-deep@^1.2.0:
   version "1.3.2"
@@ -15362,7 +15283,7 @@ safe-buffer@5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
 
-safe-buffer@5.2.1, safe-buffer@>=5.1.0, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@^5.2.0, safe-buffer@^5.2.1, safe-buffer@~5.2.0:
+safe-buffer@5.2.1, safe-buffer@>=5.1.0, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@^5.2.0, safe-buffer@~5.2.0:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.1.tgz#1eaf9fa9bdb1fdd4ec75f58f9cdb4e6b7827eec6"
   integrity sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==
@@ -16496,19 +16417,6 @@ tar-stream@^1.5.2:
     to-buffer "^1.1.1"
     xtend "^4.0.0"
 
-tar@4.4.18:
-  version "4.4.18"
-  resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.18.tgz#a565090fdcf786ee08ed14b1739179451b3cc476"
-  integrity sha512-ZuOtqqmkV9RE1+4odd+MhBpibmCxNP6PJhH/h2OqNuotTX7/XHPZQJv2pKvWMplFH9SIZZhitehh6vBH6LO8Pg==
-  dependencies:
-    chownr "^1.1.4"
-    fs-minipass "^1.2.7"
-    minipass "^2.9.0"
-    minizlib "^1.3.3"
-    mkdirp "^0.5.5"
-    safe-buffer "^5.2.1"
-    yallist "^3.1.1"
-
 teamcity-service-messages@0.1.12:
   version "0.1.12"
   resolved "https://registry.yarnpkg.com/teamcity-service-messages/-/teamcity-service-messages-0.1.12.tgz#5b62381fa9e91ea518ef3dc2c474bc7633c9fd6f"
@@ -16783,10 +16691,10 @@ trim-repeated@^1.0.0:
   dependencies:
     escape-string-regexp "^1.0.2"
 
-triplesec@^3.0.27:
-  version "3.0.27"
-  resolved "https://registry.yarnpkg.com/triplesec/-/triplesec-3.0.27.tgz#43ba5a9f0e11ebba20c7563ecca947b2f94e82c5"
-  integrity sha512-FDhkxa3JYnPOerOd+8k+SBmm7cb7KkyX+xXwNFV3XV6dsQgHuRvjtbnzWfPJ2kimeR8ErjZfPd/6r7RH6epHDw==
+triplesec@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/triplesec/-/triplesec-4.0.3.tgz#fce5b89821b24d3a03bd09a15a4baecbd6a9b7a4"
+  integrity sha512-fug70e1nJoCMxsXQJlETisAALohm84vl++IiTTHEqM7Lgqwz62jrlwqOC/gJEAJjO/ByN127sEcioB56HW3wIw==
   dependencies:
     iced-error ">=0.0.9"
     iced-lock "^1.0.1"
@@ -17859,11 +17767,6 @@ y18n@^5.0.5:
   version "5.0.8"
   resolved "https://registry.yarnpkg.com/y18n/-/y18n-5.0.8.tgz#7f4934d0f7ca8c56f95314939ddcd2dd91ce1d55"
   integrity sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==
-
-yallist@^3.0.0, yallist@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.1.1.tgz#dbb7daf9bfd8bac9ab45ebf602b8cbad0d5d08fd"
-  integrity sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==
 
 yallist@^4.0.0:
   version "4.0.0"

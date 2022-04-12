@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { STXTransferPayload, TransactionTypes } from '@stacks/connect';
+import { STXTransferPayload, TransactionTypes } from '@janniks-stacks/connect';
 import { color, Stack, useClipboard, Fade, Flex } from '@stacks/ui';
 import { truncateMiddle } from '@stacks/ui-utils';
 

@@ -1,5 +1,5 @@
 import { getAppPrivateKey, Wallet } from '@stacks/wallet-sdk';
-import { TransactionPayload } from '@stacks/connect';
+import { TransactionPayload } from '@janniks-stacks/connect';
 import { decodeToken, TokenVerifier } from 'jsontokens';
 import { getPublicKeyFromPrivate } from '@stacks/encryption';
 import { getAddressFromPrivateKey, TransactionVersion } from '@stacks/transactions';
@@ -18,7 +18,7 @@ export const UNAUTHORIZED_TX_REQUEST =
 /**
  * Verify a transaction request.
  * A transaction request is a signed JWT that is created on an app,
- * via `@stacks/connect`. The private key used to sign this JWT is an
+ * via `@janniks-stacks/connect`. The private key used to sign this JWT is an
  * `appPrivateKey`, which an app can get from authentication.
  *
  * The payload in this JWT can include an `stxAddress`. This indicates the

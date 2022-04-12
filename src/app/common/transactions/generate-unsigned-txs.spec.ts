@@ -1,5 +1,5 @@
 import { decodeToken } from 'jsontokens';
-import { TransactionPayload } from '@stacks/connect';
+import { TransactionPayload } from '@janniks-stacks/connect';
 import { PostConditionMode } from '@stacks/transactions';
 
 import { generateContractCallToken } from '@tests/utils/transation-test-utils';

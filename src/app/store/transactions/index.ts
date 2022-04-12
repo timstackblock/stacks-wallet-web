@@ -5,7 +5,7 @@ import {
   ContractDeployPayload,
   STXTransferPayload,
   TransactionTypes,
-} from '@stacks/connect';
+} from '@janniks-stacks/connect';
 import {
   AuthType,
   ChainID,

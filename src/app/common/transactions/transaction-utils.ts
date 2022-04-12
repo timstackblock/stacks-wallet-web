@@ -1,6 +1,6 @@
 import { BigNumber } from 'bignumber.js';
 
-import { TransactionTypes } from '@stacks/connect';
+import { TransactionTypes } from '@janniks-stacks/connect';
 import { AuthType, ChainID, StacksTransaction } from '@stacks/transactions';
 import {
   AddressTransactionWithTransfers,

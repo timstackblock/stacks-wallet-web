@@ -1,5 +1,5 @@
 import { UseQueryOptions } from 'react-query';
-import type { TransactionPayload } from '@stacks/connect';
+import type { TransactionPayload } from '@janniks-stacks/connect';
 import { ContractInterfaceFunction } from '@stacks/rpc-client';
 
 import { ContractInterfaceResponseWithFunctions } from '@shared/models/contract-types';

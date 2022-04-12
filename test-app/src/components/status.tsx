@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Text, Button, Input, Flex } from '@stacks/ui';
 import { ExplorerLink } from './explorer-link';
-import { useConnect } from '@stacks/connect-react';
+import { useConnect } from '@janniks-stacks/connect-react';
 import {
   PostConditionMode,
   standardPrincipalCV,

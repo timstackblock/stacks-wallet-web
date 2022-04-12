@@ -4,7 +4,7 @@ import {
   ContractDeployPayload,
   STXTransferPayload,
   TransactionTypes,
-} from '@stacks/connect';
+} from '@janniks-stacks/connect';
 import {
   AnchorMode,
   deserializeCV,

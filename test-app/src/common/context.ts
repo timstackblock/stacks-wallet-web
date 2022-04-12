@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { UserSession, AppConfig, UserData } from '@stacks/auth';
+import { UserSession, AppConfig, UserData } from '@janniks-stacks/auth';
 
 export interface AppState {
   userData: UserData | null;

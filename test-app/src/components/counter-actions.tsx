@@ -3,7 +3,7 @@ import { Button, ButtonGroup, Box, Text } from '@stacks/ui';
 import { AppContext } from '@common/context';
 import { getRPCClient, stacksTestnetNetwork as network } from '@common/utils';
 import { deserializeCV, IntCV } from '@blockstack/stacks-transactions';
-import { useConnect } from '@stacks/connect-react';
+import { useConnect } from '@janniks-stacks/connect-react';
 import { ExplorerLink } from '@components/explorer-link';
 
 export const CounterActions: React.FC = () => {

@@ -1,4 +1,4 @@
-import { TransactionTypes } from '@stacks/connect';
+import { TransactionTypes } from '@janniks-stacks/connect';
 import { truncateMiddle } from '@stacks/ui-utils';
 
 import { stacksValue } from '@app/common/stacks-utils';

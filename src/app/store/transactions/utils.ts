@@ -1,5 +1,5 @@
 import { decodeToken } from 'jsontokens';
-import type { TransactionPayload } from '@stacks/connect';
+import type { TransactionPayload } from '@janniks-stacks/connect';
 
 export function getPayloadFromToken(requestToken: string) {
   const token = decodeToken(requestToken);

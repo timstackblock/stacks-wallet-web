@@ -1,4 +1,4 @@
-import { FinishedTxPayload, SponsoredFinishedTxPayload } from '@stacks/connect';
+import { FinishedTxPayload, SponsoredFinishedTxPayload } from '@janniks-stacks/connect';
 
 export const MESSAGE_SOURCE = 'stacks-wallet' as const;
 

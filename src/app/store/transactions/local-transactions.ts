@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 import { useAtomValue, waitForAll } from 'jotai/utils';
-import { STXTransferPayload, TransactionTypes } from '@stacks/connect';
+import { STXTransferPayload, TransactionTypes } from '@janniks-stacks/connect';
 import { useAsync } from 'react-async-hook';
 import {
   bufferCVFromString,

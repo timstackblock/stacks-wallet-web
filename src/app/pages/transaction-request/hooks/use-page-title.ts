@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { TransactionTypes } from '@stacks/connect';
+import { TransactionTypes } from '@janniks-stacks/connect';
 
 import { useTransactionRequestState } from '@app/store/transactions/requests.hooks';
 

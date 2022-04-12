@@ -1,4 +1,4 @@
-import { StacksProvider } from '@stacks/connect';
+import { StacksProvider } from '@janniks-stacks/connect';
 import {
   AuthenticationRequestEventDetails,
   DomEventName,

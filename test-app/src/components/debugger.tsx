@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BN from 'bn.js';
-import { useConnect } from '@stacks/connect-react';
+import { useConnect } from '@janniks-stacks/connect-react';
 import { StacksTestnet } from '@stacks/network';
 import {
   broadcastTransaction,

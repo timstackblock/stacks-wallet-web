@@ -1,5 +1,5 @@
 import React from 'react';
-import { useConnect } from '@stacks/connect-react';
+import { useConnect } from '@janniks-stacks/connect-react';
 import { SampleContracts } from '@common/contracts';
 import { Box, Button, Text } from '@stacks/ui';
 import { ExplorerLink } from './explorer-link';

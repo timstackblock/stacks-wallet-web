@@ -10,7 +10,7 @@ import {
   transactionRequestValidationState,
 } from '@app/store/transactions/requests';
 import { getKeyForRequest, StorageKey } from '@shared/utils/storage';
-import { TransactionTypes } from '@stacks/connect';
+import { TransactionTypes } from '@janniks-stacks/connect';
 import { currentNetworkState } from '@app/store/network/networks';
 import { currentAccountStxAddressState } from '@app/store/accounts';
 import { DEFAULT_TESTNET_SERVER } from '@shared/constants';

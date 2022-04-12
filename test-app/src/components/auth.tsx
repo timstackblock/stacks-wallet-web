@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Text, Box, ButtonGroup } from '@stacks/ui';
-import { useConnect } from '@stacks/connect-react';
+import { useConnect } from '@janniks-stacks/connect-react';
 import { OnboardingSelectors } from '@tests/integration/onboarding/onboarding.selectors';
 
 export const Auth: React.FC = () => {

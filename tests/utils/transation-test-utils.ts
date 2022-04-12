@@ -1,4 +1,4 @@
-import { ContractCallOptions, makeContractCallToken, UserData } from '@stacks/connect';
+import { ContractCallOptions, makeContractCallToken, UserData } from '@janniks-stacks/connect';
 import {
   PostConditionMode,
   makeStandardFungiblePostCondition,

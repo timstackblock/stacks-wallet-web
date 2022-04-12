@@ -5,7 +5,7 @@ import { microStxToStx, validateStacksAddress } from '@app/common/stacks-utils';
 import { useWallet } from '@app/common/hooks/use-wallet';
 import { TransactionErrorReason } from '@app/pages/transaction-request/components/transaction-error/transaction-error';
 import { useContractInterface } from '@app/query/contract/contract.hooks';
-import { TransactionTypes } from '@stacks/connect';
+import { TransactionTypes } from '@janniks-stacks/connect';
 import { useCurrentAccountAvailableStxBalance } from '@app/store/accounts/account.hooks';
 import { useOrigin } from '@app/store/transactions/requests.hooks';
 import {

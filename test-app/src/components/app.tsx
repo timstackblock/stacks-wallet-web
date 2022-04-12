@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider, theme, Flex, ColorModeProvider } from '@stacks/ui';
-import { Connect } from '@stacks/connect-react';
+import { Connect } from '@janniks-stacks/connect-react';
 import { AppContext } from '@common/context';
 import { Header } from '@components/header';
 import { Home } from '@components/home';

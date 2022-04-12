@@ -1,5 +1,5 @@
 import { useGetContractInterface } from '@app/query/contract/contract.query';
-import { TransactionPayload } from '@stacks/connect';
+import { TransactionPayload } from '@janniks-stacks/connect';
 import { renderHook } from '@testing-library/react-hooks';
 import { HEYSTACK_HEY_TX_REQUEST_DECODED } from '@tests/mocks';
 import { setupHeystackEnv } from '@tests/mocks/heystack';

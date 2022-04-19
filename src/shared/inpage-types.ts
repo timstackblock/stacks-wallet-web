@@ -4,6 +4,7 @@
 export enum DomEventName {
   authenticationRequest = 'stacksAuthenticationRequest',
   transactionRequest = 'stacksTransactionRequest',
+  rpcRequest = 'stxRpcRequest',
 }
 
 export interface AuthenticationRequestEventDetails {

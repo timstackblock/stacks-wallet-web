@@ -7,8 +7,8 @@
 import {
   CONTENT_SCRIPT_PORT,
   ExternalMethods,
-  MessageFromContentScript,
-  MessageToContentScript,
+  LegacyMessageFromContentScript,
+  LegacyMessageToContentScript,
   MESSAGE_SOURCE,
 } from '@shared/message-types';
 import {
@@ -45,12 +45,12 @@ window.addEventListener('message', event => {
 const backgroundPort = chrome.runtime.connect({ name: CONTENT_SCRIPT_PORT });
 
 // Sends message to background script that an event has fired
-function sendMessageToBackground(message: MessageFromContentScript) {
+function sendMessageToBackground(message: LegacyMessageFromContentScript) {
   backgroundPort.postMessage(message);
 }
 
 // Receives message from background script to execute in browser
-chrome.runtime.onMessage.addListener((message: MessageToContentScript) => {
+chrome.runtime.onMessage.addListener((message: LegacyMessageToContentScript) => {
   if (message.source === MESSAGE_SOURCE) {
     // Forward to web app (browser)
     window.postMessage(message, window.location.origin);
@@ -59,7 +59,7 @@ chrome.runtime.onMessage.addListener((message: MessageToContentScript) => {
 
 interface ForwardDomEventToBackgroundArgs {
   payload: string;
-  method: MessageFromContentScript['method'];
+  method: LegacyMessageFromContentScript['method'];
   urlParam: string;
   path: RouteUrls;
 }
@@ -93,6 +93,12 @@ document.addEventListener(DomEventName.transactionRequest, ((event: TransactionR
     method: ExternalMethods.transactionRequest,
   });
 }) as EventListener);
+
+// Forward valid RPC events
+// Validate from known list
+document.addEventListener(DomEventName.rpcRequest, async (event: any) => {
+  backgroundPort.postMessage({ source: MESSAGE_SOURCE, ...event.detail });
+});
 
 // Inject inpage script (Stacks Provider)
 const inpage = document.createElement('script');

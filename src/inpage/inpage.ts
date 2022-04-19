@@ -7,8 +7,9 @@ import {
 import {
   AuthenticationResponseMessage,
   ExternalMethods,
-  MessageToContentScript,
+  LegacyMessageToContentScript,
   MESSAGE_SOURCE,
+  RpcMethodNames,
   TransactionResponseMessage,
 } from '@shared/message-types';
 import { logger } from '@shared/logger';
@@ -18,7 +19,6 @@ type CallableMethods = keyof typeof ExternalMethods;
 interface ExtensionResponse {
   source: 'blockstack-extension';
   method: CallableMethods;
-
   [key: string]: any;
 }
 
@@ -53,7 +53,7 @@ const callAndReceive = async (
   });
 };
 
-const isValidEvent = (event: MessageEvent, method: MessageToContentScript['method']) => {
+const isValidEvent = (event: MessageEvent, method: LegacyMessageToContentScript['method']) => {
   const { data } = event;
   const correctSource = data.source === MESSAGE_SOURCE;
   const correctMethod = data.method === method;
@@ -61,7 +61,7 @@ const isValidEvent = (event: MessageEvent, method: MessageToContentScript['metho
 };
 
 const provider: StacksProvider = {
-  getURL: async () => {
+  async getURL() {
     const { url } = await callAndReceive('getURL');
     return url;
   },
@@ -108,6 +108,24 @@ const provider: StacksProvider = {
       window.addEventListener('message', handleMessage);
     });
   },
+
+  async request(method: RpcMethodNames, params?: any[]) {
+    return new Promise((resolve, _reject) => {
+      const id = crypto.randomUUID();
+      const event = new CustomEvent<RpcEventArgs>(DomEventName.rpcRequest, {
+        detail: { jsonrpc: '2.0', id, method, params },
+      });
+      document.dispatchEvent(event);
+      const handleMessage = (event: MessageEvent<any>) => {
+        if (event.data.id !== id) return;
+
+        window.removeEventListener('message', handleMessage);
+        resolve(event.data);
+      };
+      window.addEventListener('message', handleMessage);
+    });
+  },
+
   getProductInfo() {
     return {
       version: VERSION,
@@ -118,6 +136,22 @@ const provider: StacksProvider = {
       },
     };
   },
-};
+} as StacksProvider & { request(): Promise<void> };
 
 window.StacksProvider = provider;
+
+interface RpcRequestArgs {
+  method: RpcMethodNames;
+  params?: any[];
+}
+
+interface RpcEventArgs extends RpcRequestArgs {
+  jsonrpc: '2.0';
+  id: string;
+}
+
+declare global {
+  interface Crypto {
+    randomUUID: () => string;
+  }
+}

@@ -1,6 +1,6 @@
 import { FinishedTxPayload, SponsoredFinishedTxPayload } from '@stacks/connect';
 
-export const MESSAGE_SOURCE = 'stacks-wallet' as const;
+export const MESSAGE_SOURCE = 'hiro-wallet' as const;
 
 export const CONTENT_SCRIPT_PORT = 'content-script' as const;
 
@@ -34,6 +34,41 @@ export interface Message<Methods extends ExtensionMethods, Payload = undefined>
   payload: Payload;
 }
 
+//
+// RPC Methods, SIP pending
+
+export enum RpcMethods {
+  stx_requestAccounts,
+  stx_testAnotherMethod,
+}
+
+export type RpcMethodNames = keyof typeof RpcMethods;
+
+interface RpcMessage<Method extends RpcMethodNames, Params = void> {
+  id: string;
+  method: Method;
+  params?: Params;
+}
+
+type RequestAccounts = RpcMessage<'stx_requestAccounts'>;
+type TestAction = RpcMessage<'stx_testAnotherMethod'>;
+
+export type SupportedRpcMessages = RequestAccounts | TestAction;
+
+// interface SupportedMessagesReturnTypeMap {
+//   [RpcMethods.stx_requestAccounts]: { xxx: string };
+//   [RpcMethods.stx_testAnotherMethod]: { yyy: string };
+// }
+
+// function xx<Method extends keyof SupportedMessagesReturnTypeMap >(): // method: RpcMethods
+// SupportedMessagesReturnTypeMap[Method] {
+
+// }
+
+// xx('stx_requestAccounts');
+
+//
+// Deprecated methods
 type AuthenticationRequestMessage = Message<ExternalMethods.authenticationRequest, string>;
 
 export type AuthenticationResponseMessage = Message<
@@ -56,5 +91,10 @@ export type TransactionResponseMessage = Message<
   }
 >;
 
-export type MessageFromContentScript = AuthenticationRequestMessage | TransactionRequestMessage;
-export type MessageToContentScript = AuthenticationResponseMessage | TransactionResponseMessage;
+export type LegacyMessageFromContentScript =
+  | AuthenticationRequestMessage
+  | TransactionRequestMessage;
+
+export type LegacyMessageToContentScript =
+  | AuthenticationResponseMessage
+  | TransactionResponseMessage;

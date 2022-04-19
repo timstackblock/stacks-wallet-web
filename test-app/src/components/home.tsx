@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '@common/context';
-import { Box, Text, Flex, BoxProps } from '@stacks/ui';
+import { Box, Text, Flex, BoxProps, Button } from '@stacks/ui';
 import { Auth } from './auth';
 import { Tab } from './tab';
 import { Status } from './status';
 import { Counter } from './counter';
 import { Debugger } from './debugger';
 import { Bns } from './bns';
+import { getStacksProvider } from '@stacks/connect';
 
 type Tabs = 'status' | 'counter' | 'debug' | 'bns';
 
@@ -52,13 +53,29 @@ const Page: React.FC<{ tab: Tabs; setTab: (value: Tabs) => void }> = ({ tab, set
 export const Home: React.FC = () => {
   const state = useContext(AppContext);
   const [tab, setTab] = useState<Tabs>('debug');
-
+  const [account, setAccount] = useState<any>(null);
   return (
     <Container>
       <Text as="h1" textStyle="display.large" fontSize={7} mb={'loose'} display="block">
         Testnet Demo
       </Text>
       {state.userData ? <Page tab={tab} setTab={setTab} /> : <Auth />}
+      <Button
+        my="base"
+        onClick={() => {
+          // console.log('request accounts app', getStacksProvider());
+          getStacksProvider()
+            .request('stx_requestAccounts')
+            .then(resp => {
+              setAccount([resp]);
+              console.log('request acct resp', resp);
+            });
+        }}
+      >
+        Request accounts
+      </Button>
+      <br />
+      {account !== null && <pre>{JSON.stringify(account, null, 2)}</pre>}
     </Container>
   );
 };

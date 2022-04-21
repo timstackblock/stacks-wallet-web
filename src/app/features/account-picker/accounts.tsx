@@ -1,12 +1,12 @@
-import { useCallback, Suspense, memo, useState, useMemo } from 'react';
+import { Suspense, memo, useMemo } from 'react';
 import { FiPlusCircle } from 'react-icons/fi';
 import { Virtuoso } from 'react-virtuoso';
-import { Box, BoxProps, color, FlexProps, Spinner, Stack } from '@stacks/ui';
+import { Box, color, FlexProps, Spinner, Stack } from '@stacks/ui';
 import { truncateMiddle } from '@stacks/ui-utils';
 
-import { Caption, Text, Title } from '@app/components/typography';
+import { Caption, Text } from '@app/components/typography';
 import { useAccountDisplayName } from '@app/common/hooks/account/use-account-names';
-import { useWallet } from '@app/common/hooks/use-wallet';
+
 import { useOnboardingState } from '@app/common/hooks/auth/use-onboarding-state';
 import { useCreateAccount } from '@app/common/hooks/account/use-create-account';
 import type { SoftwareWalletAccountWithAddress } from '@app/store/accounts/account.models';
@@ -20,33 +20,10 @@ import {
 import { slugify } from '@app/common/utils';
 import { useAccounts, useHasCreatedAccount } from '@app/store/accounts/account.hooks';
 import { useAddressBalances } from '@app/query/balance/balance.hooks';
+import { AccountTitle, AccountTitlePlaceholder } from '@app/components/account/account-title';
 
 const loadingProps = { color: '#A1A7B3' };
 const getLoadingProps = (loading: boolean) => (loading ? loadingProps : {});
-
-interface AccountTitlePlaceholderProps extends BoxProps {
-  account: SoftwareWalletAccountWithAddress;
-}
-const AccountTitlePlaceholder = ({ account, ...rest }: AccountTitlePlaceholderProps) => {
-  const name = `Account ${account?.index + 1}`;
-  return (
-    <Title fontSize={2} lineHeight="1rem" fontWeight="400" {...rest}>
-      {name}
-    </Title>
-  );
-};
-
-interface AccountTitleProps extends BoxProps {
-  account: SoftwareWalletAccountWithAddress;
-  name: string;
-}
-const AccountTitle = ({ account, name, ...rest }: AccountTitleProps) => {
-  return (
-    <Title fontSize={2} lineHeight="1rem" fontWeight="400" {...rest}>
-      {name}
-    </Title>
-  );
-};
 
 interface AccountItemProps extends FlexProps {
   selectedAddress?: string | null;
@@ -84,11 +61,7 @@ const AccountItem = memo((props: AccountItemProps) => {
                   />
                 }
               >
-                <AccountTitle
-                  name={name}
-                  {...getLoadingProps(showLoadingProps)}
-                  account={account}
-                />
+                <AccountTitle name={name} account={account} />
               </Suspense>
               <Stack alignItems="center" spacing="6px" isInline>
                 <Caption fontSize={0} {...getLoadingProps(showLoadingProps)}>
@@ -131,21 +104,14 @@ const AddAccountAction = memo(() => {
   );
 });
 
-export const Accounts = memo(() => {
-  const { wallet, finishSignIn } = useWallet();
+interface AccountPickerProps {
+  selectedAccountIndex: number | null;
+  onAccountSelected(index: number): void;
+}
+export function AccountPicker(props: AccountPickerProps) {
+  const { onAccountSelected, selectedAccountIndex } = props;
+
   const accounts = useAccounts();
-  const { decodedAuthRequest } = useOnboardingState();
-  const [selectedAccount, setSelectedAccount] = useState<number | null>(null);
-
-  const signIntoAccount = useCallback(
-    async (index: number) => {
-      setSelectedAccount(index);
-      await finishSignIn(index);
-    },
-    [finishSignIn]
-  );
-
-  if (!wallet || !accounts || !decodedAuthRequest) return null;
 
   return (
     <>
@@ -158,12 +124,12 @@ export const Accounts = memo(() => {
           itemContent={(index, account) => (
             <AccountItem
               account={account}
-              isLoading={selectedAccount === index}
-              onSelectAccount={signIntoAccount}
+              isLoading={selectedAccountIndex === index}
+              onSelectAccount={() => onAccountSelected(index)}
             />
           )}
         />
       </Box>
     </>
   );
-});
+}

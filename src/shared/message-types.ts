@@ -36,6 +36,28 @@ export interface Message<Methods extends ExtensionMethods, Payload = undefined>
 
 //
 // RPC Methods, SIP pending
+interface RpcBaseArgs {
+  jsonrpc: '2.0';
+  id: string;
+}
+
+export interface RpcRequestArgs extends RpcBaseArgs {
+  method: RpcMethodNames;
+  params?: any[];
+}
+
+interface RpcSuccessResponseArgs extends RpcBaseArgs {
+  results: any;
+}
+
+interface RpcErrorResponseArgs extends RpcBaseArgs {
+  error: {
+    code: number;
+    message: string;
+  };
+}
+
+export type RpcResponseArgs = RpcSuccessResponseArgs | RpcErrorResponseArgs;
 
 export enum RpcMethods {
   stx_requestAccounts,
@@ -54,18 +76,6 @@ type RequestAccounts = RpcMessage<'stx_requestAccounts'>;
 type TestAction = RpcMessage<'stx_testAnotherMethod'>;
 
 export type SupportedRpcMessages = RequestAccounts | TestAction;
-
-// interface SupportedMessagesReturnTypeMap {
-//   [RpcMethods.stx_requestAccounts]: { xxx: string };
-//   [RpcMethods.stx_testAnotherMethod]: { yyy: string };
-// }
-
-// function xx<Method extends keyof SupportedMessagesReturnTypeMap >(): // method: RpcMethods
-// SupportedMessagesReturnTypeMap[Method] {
-
-// }
-
-// xx('stx_requestAccounts');
 
 //
 // Deprecated methods

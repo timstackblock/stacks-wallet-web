@@ -5,7 +5,7 @@ import { useAnalytics } from '@app/common/hooks/analytics/use-analytics';
 import { Container } from '@app/components/container/container';
 import { LoadingSpinner } from '@app/components/loading-spinner';
 import { MagicRecoveryCode } from '@app/pages/onboarding/magic-recovery-code/magic-recovery-code';
-import { ChooseAccount } from '@app/pages/choose-account/choose-account';
+import { AuthenticateAccount } from '@app/pages/account-authentication/account-authentication';
 import { TransactionRequest } from '@app/pages/transaction-request/transaction-request';
 import { SignIn } from '@app/pages/onboarding/sign-in/sign-in';
 import { ReceiveTokens } from '@app/pages/receive-tokens/receive-tokens';
@@ -29,6 +29,7 @@ import { RouteUrls } from '@shared/route-urls';
 import { useOnWalletLock } from './hooks/use-on-wallet-lock';
 import { useOnSignOut } from './hooks/use-on-sign-out';
 import { OnboardingGate } from './onboarding-gate';
+import { AccountRequest } from '@app/pages/choose-account-request/account-request';
 
 export function AppRoutes(): JSX.Element | null {
   const { pathname } = useLocation();
@@ -109,11 +110,21 @@ export function AppRoutes(): JSX.Element | null {
           }
         />
         <Route
-          path={RouteUrls.ChooseAccount}
+          path={RouteUrls.AccountAuthentication}
           element={
             <AccountGate>
               <Suspense fallback={<></>}>
-                <ChooseAccount />
+                <AuthenticateAccount />
+              </Suspense>
+            </AccountGate>
+          }
+        />
+        <Route
+          path={RouteUrls.AccountRequest}
+          element={
+            <AccountGate>
+              <Suspense fallback={<></>}>
+                <AccountRequest />
               </Suspense>
             </AccountGate>
           }

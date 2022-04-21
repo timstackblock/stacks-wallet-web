@@ -31,7 +31,7 @@ export function useSaveAuthRequest() {
         appURL: new URL(origin),
       });
 
-      navigate(RouteUrls.ChooseAccount);
+      navigate(RouteUrls.AccountAuthentication);
     },
     [saveAuthRequest, navigate]
   );

@@ -36,7 +36,7 @@ export function Home() {
   );
 
   useEffect(() => {
-    if (decodedAuthRequest) navigate(RouteUrls.ChooseAccount);
+    if (decodedAuthRequest) navigate(RouteUrls.AccountAuthentication);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

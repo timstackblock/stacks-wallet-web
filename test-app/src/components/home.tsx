@@ -67,7 +67,7 @@ export const Home: React.FC = () => {
           getStacksProvider()
             .request('stx_requestAccounts')
             .then(resp => {
-              setAccount([resp]);
+              setAccount(resp);
               console.log('request acct resp', resp);
             });
         }}

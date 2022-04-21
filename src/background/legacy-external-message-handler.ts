@@ -17,7 +17,8 @@ async function openRequestInFullPage(path: string, urlParams: URLSearchParams) {
 export function inferLegacyMessage(message: any): message is LegacyMessageFromContentScript {
   // Now that we use a RPC communication style, we can infer
   // legacy message types by presence of an id
-  return !Object.hasOwn(message, 'id');
+  const hasIdProp = 'id' in message;
+  return !hasIdProp;
 }
 
 export async function handleLegacyExternalMethodFormat(

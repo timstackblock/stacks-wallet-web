@@ -20,10 +20,12 @@ import { inMemoryKeySlice } from './in-memory-key/in-memory-key.slice';
 import { ExtensionStorage } from './utils/extension-storage';
 import { onboardingSlice } from './onboarding/onboarding.slice';
 import { analyticsSlice } from './analytics/analytics.slice';
+import { appsSlice } from './apps/apps.slice';
 
 const storage = new ExtensionStorage(chrome.storage.local, chrome.runtime);
 
 const rootReducer = combineReducers({
+  apps: appsSlice.reducer,
   keys: keySlice.reducer,
   chains: combineReducers({
     stx: stxChainSlice.reducer,

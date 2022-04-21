@@ -52,7 +52,7 @@ export function Unlock(): JSX.Element {
       await unlockWallet(password);
 
       if (decodedAuthRequest) {
-        navigate(RouteUrls.ChooseAccount);
+        navigate(RouteUrls.AccountAuthentication);
       } else {
         navigate(RouteUrls.Home);
       }

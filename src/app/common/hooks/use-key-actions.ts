@@ -7,7 +7,7 @@ import { clearSessionLocalData } from '@app/common/store-utils';
 import { createNewAccount, stxChainActions } from '@app/store/chains/stx-chain.actions';
 import { keyActions } from '@app/store/keys/key.actions';
 import { useAnalytics } from './analytics/use-analytics';
-import { sendMessage } from '@shared/messages';
+import { sendMessageToBackground } from '@shared/messages';
 import { InternalMethods } from '@shared/message-types';
 import { inMemoryKeyActions } from '@app/store/in-memory-key/in-memory-key.actions';
 
@@ -23,7 +23,7 @@ export function useKeyActions() {
 
       generateWalletKey() {
         const secretKey = generateSecretKey(256);
-        sendMessage({
+        sendMessageToBackground({
           method: InternalMethods.ShareInMemoryKeyToBackground,
           payload: { secretKey, keyId: 'default' },
         });
@@ -45,12 +45,12 @@ export function useKeyActions() {
       async signOut() {
         void analytics.track('sign_out');
         dispatch(keyActions.signOut());
-        sendMessage({ method: InternalMethods.RemoveInMemoryKeys, payload: undefined });
+        sendMessageToBackground({ method: InternalMethods.RemoveInMemoryKeys, payload: undefined });
         clearSessionLocalData();
       },
 
       lockWallet() {
-        sendMessage({ method: InternalMethods.RemoveInMemoryKeys, payload: undefined });
+        sendMessageToBackground({ method: InternalMethods.RemoveInMemoryKeys, payload: undefined });
         return dispatch(inMemoryKeyActions.lockWallet());
       },
     }),

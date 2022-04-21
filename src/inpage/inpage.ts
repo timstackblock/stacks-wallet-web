@@ -10,9 +10,17 @@ import {
   LegacyMessageToContentScript,
   MESSAGE_SOURCE,
   RpcMethodNames,
+  RpcRequestArgs,
+  RpcResponseArgs,
   TransactionResponseMessage,
 } from '@shared/message-types';
 import { logger } from '@shared/logger';
+
+declare global {
+  interface Crypto {
+    randomUUID: () => string;
+  }
+}
 
 type CallableMethods = keyof typeof ExternalMethods;
 
@@ -109,16 +117,15 @@ const provider: StacksProvider = {
     });
   },
 
-  async request(method: RpcMethodNames, params?: any[]) {
+  async request(method: RpcMethodNames, params?: any[]): Promise<RpcResponseArgs> {
     return new Promise((resolve, _reject) => {
       const id = crypto.randomUUID();
-      const event = new CustomEvent<RpcEventArgs>(DomEventName.rpcRequest, {
+      const event = new CustomEvent<RpcRequestArgs>(DomEventName.rpcRequest, {
         detail: { jsonrpc: '2.0', id, method, params },
       });
       document.dispatchEvent(event);
       const handleMessage = (event: MessageEvent<any>) => {
         if (event.data.id !== id) return;
-
         window.removeEventListener('message', handleMessage);
         resolve(event.data);
       };
@@ -136,22 +143,6 @@ const provider: StacksProvider = {
       },
     };
   },
-} as StacksProvider & { request(): Promise<void> };
+} as StacksProvider & { request(): Promise<RpcResponseArgs> };
 
 window.StacksProvider = provider;
-
-interface RpcRequestArgs {
-  method: RpcMethodNames;
-  params?: any[];
-}
-
-interface RpcEventArgs extends RpcRequestArgs {
-  jsonrpc: '2.0';
-  id: string;
-}
-
-declare global {
-  interface Crypto {
-    randomUUID: () => string;
-  }
-}

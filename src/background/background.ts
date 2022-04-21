@@ -9,7 +9,6 @@ import { logger } from '@shared/logger';
 import {
   CONTENT_SCRIPT_PORT,
   LegacyMessageFromContentScript,
-  MESSAGE_SOURCE,
   RpcMethods,
   SupportedRpcMessages,
 } from '@shared/message-types';
@@ -21,6 +20,7 @@ import {
   handleLegacyExternalMethodFormat,
   inferLegacyMessage,
 } from './legacy-external-message-handler';
+import { popupCenter } from './popup-center';
 
 initSentry();
 initContextMenuActions();
@@ -43,6 +43,7 @@ chrome.runtime.onInstalled.addListener(details => {
 chrome.runtime.onConnect.addListener(port =>
   Sentry.wrap(() => {
     if (port.name !== CONTENT_SCRIPT_PORT) return;
+
     port.onMessage.addListener(
       (message: LegacyMessageFromContentScript | SupportedRpcMessages, port) => {
         if (inferLegacyMessage(message)) {
@@ -55,10 +56,11 @@ chrome.runtime.onConnect.addListener(port =>
 
         switch (message.method) {
           case RpcMethods[RpcMethods.stx_requestAccounts]: {
-            chrome.tabs.sendMessage(port.sender.tab.id, {
-              source: MESSAGE_SOURCE,
-              id: message.id,
-              results: { publicKey: 'sldkfjs' },
+            const params = new URLSearchParams();
+            params.set('tabId', port.sender.tab.id.toString());
+            params.set('id', message.id);
+            popupCenter({
+              url: `/popup-center.html#${RouteUrls.AccountRequest}?${params.toString()}`,
             });
             break;
           }

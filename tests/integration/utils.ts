@@ -1,6 +1,9 @@
 import { chromium, ChromiumBrowserContext } from 'playwright';
 import { Page } from 'playwright-core';
 import { join } from 'path';
+import { chromium, ChromiumBrowserContext } from 'playwright';
+import { Page } from 'playwright-core';
+import { join } from 'path';
 import { mkdtemp } from 'fs';
 import { tmpdir } from 'os';
 import { promisify } from 'util';
@@ -8,6 +11,8 @@ import { setupMocks } from '../mocks';
 import { DemoPage } from '../page-objects/demo.page';
 import { WalletPage } from '@tests/page-objects/wallet.page';
 import { SettingsSelectors } from '@tests/integration/settings.selectors';
+import { NetworkPage } from '@tests/page-objects/network-page';
+import { NetworkSelectors } from '@tests/integration/network.selectors';
 
 const makeTmpDir = promisify(mkdtemp);
 
@@ -157,4 +162,15 @@ export const selectTestnet = async (wallet: WalletPage) => {
 export const timeDifference = (startDate: Date, endDate: Date) => {
   const seconds = (endDate.getTime() - startDate.getTime()) / 1000;
   return seconds;
+};
+
+export const addAPINetwork = async (wallet: WalletPage) => {
+  await wallet.clickSettingsButton();
+  await wallet.page.click(createTestSelector(SettingsSelectors.ChangeNetworkAction));
+  await wallet.page.click(createTestSelector(SettingsSelectors.BtnAddNetwork));
+  const networkPage: NetworkPage = new NetworkPage(wallet.page);
+  await networkPage.inputNetworkNameField('api');
+  await networkPage.inputNetworkAddressField(NetworkSelectors.APINetwork);
+  await networkPage.inputNetworkKeyField('api');
+  await networkPage.clickAddNetwork();
 };

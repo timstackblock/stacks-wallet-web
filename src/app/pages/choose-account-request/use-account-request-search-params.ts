@@ -8,6 +8,7 @@ export function useAccountRequestSearchParams() {
     () => ({
       tabId: searchParams.get('tabId'),
       id: searchParams.get('id'),
+      origin: searchParams.get('origin'),
     }),
     [searchParams]
   );

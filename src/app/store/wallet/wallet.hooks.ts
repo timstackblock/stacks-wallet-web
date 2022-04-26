@@ -17,6 +17,7 @@ import { finalizeAuthResponse } from '@app/common/actions/finalize-auth-response
 import { logger } from '@shared/logger';
 import { encryptedSecretKeyState, secretKeyState, walletState } from './wallet';
 import { useKeyActions } from '@app/common/hooks/use-key-actions';
+import { useUserGrantsPermissionToAppDomain } from '../apps/apps.actions';
 
 export function useWalletState() {
   return useAtom(walletState);
@@ -47,6 +48,7 @@ export function useSetLatestNonceCallback() {
 export function useFinishSignInCallback() {
   const { decodedAuthRequest, authRequest, appName, appIcon } = useOnboardingState();
   const keyActions = useKeyActions();
+  const grantPermissionToDomain = useUserGrantsPermissionToAppDomain();
   return useAtomCallback<void, number>(
     useCallback(
       async (get, _set, accountIndex) => {
@@ -84,9 +86,10 @@ export function useFinishSignInCallback() {
           account,
         });
         keyActions.switchAccount(accountIndex);
+        grantPermissionToDomain(appURL.origin);
         finalizeAuthResponse({ decodedAuthRequest, authRequest, authResponse });
       },
-      [decodedAuthRequest, authRequest, appIcon, appName, keyActions]
+      [decodedAuthRequest, authRequest, appIcon, appName, keyActions, grantPermissionToDomain]
     )
   );
 }

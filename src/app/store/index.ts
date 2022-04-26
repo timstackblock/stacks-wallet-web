@@ -40,7 +40,7 @@ const persistConfig = {
   version: 1,
   storage,
   serialize: true,
-  whitelist: ['keys', 'chains', 'onboarding', 'analytics'],
+  whitelist: ['apps', 'keys', 'chains', 'onboarding', 'analytics'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

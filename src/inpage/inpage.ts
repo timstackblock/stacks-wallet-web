@@ -118,16 +118,20 @@ const provider: StacksProvider = {
   },
 
   async request(method: RpcMethodNames, params?: any[]): Promise<RpcResponseArgs> {
-    return new Promise((resolve, _reject) => {
+    return new Promise((resolve, reject) => {
       const id = crypto.randomUUID();
-      const event = new CustomEvent<RpcRequestArgs>(DomEventName.rpcRequest, {
-        detail: { jsonrpc: '2.0', id, method, params },
-      });
-      document.dispatchEvent(event);
+      console.log('request');
+      document.dispatchEvent(
+        new CustomEvent<RpcRequestArgs>(DomEventName.rpcRequest, {
+          detail: { jsonrpc: '2.0', id, method, params },
+        })
+      );
+      // @TODO: add RPC response type
       const handleMessage = (event: MessageEvent<any>) => {
         if (event.data.id !== id) return;
         window.removeEventListener('message', handleMessage);
-        resolve(event.data);
+        if (event.data.error) reject(event.data.error);
+        resolve(event.data.result);
       };
       window.addEventListener('message', handleMessage);
     });

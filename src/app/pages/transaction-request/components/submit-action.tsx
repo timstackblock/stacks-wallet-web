@@ -10,6 +10,7 @@ import { isEmpty } from '@app/common/utils';
 import { ShowEditNonceAction, ShowEditNoncePlaceholder } from '@app/components/show-edit-nonce';
 import { useTransactionError } from '@app/pages/transaction-request/hooks/use-transaction-error';
 import { TransactionSigningSelectors } from '@tests/page-objects/transaction-signing.selectors';
+import { TransactionErrorReason } from './transaction-error/transaction-error';
 
 function BaseConfirmButton(props: ButtonProps): JSX.Element {
   return (

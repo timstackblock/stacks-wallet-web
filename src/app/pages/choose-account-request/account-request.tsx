@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { logger } from '@shared/logger';
 
 import { useRouteHeader } from '@app/common/hooks/use-route-header';
@@ -10,26 +11,30 @@ import {
   sendRequestAccountResponseToTab,
   sendUserDeniesAccountRequest,
 } from '@app/common/actions/send-request-account-response';
+import { useUserGrantsPermissionToAppDomain } from '@app/store/apps/apps.actions';
 
 import { useAccountRequestSearchParams } from './use-account-request-search-params';
-import { useEffect } from 'react';
 
 export function AccountRequest() {
   const accounts = useAccounts();
   const { name: appName } = useAppDetails();
+  const grantDomainPermission = useUserGrantsPermissionToAppDomain();
 
-  const { tabId, id } = useAccountRequestSearchParams();
+  const { tabId, id, origin } = useAccountRequestSearchParams();
 
   useRouteHeader(<Header hideActions />);
 
   const returnAccountDetailsToApp = (index: number) => {
     if (!accounts) throw new Error('Cannot request account details with no account');
 
-    if (!tabId || !id) {
-      logger.error('Missing either tabId or uuid. Both values are necessary to respond to app');
+    if (!tabId || !id || !origin) {
+      logger.error(
+        'Missing necessary search param values. All values are necessary to respond to app'
+      );
       return;
     }
 
+    grantDomainPermission(origin);
     sendRequestAccountResponseToTab({ tabId, id, account: accounts[index] });
     window.close();
   };
@@ -45,6 +50,7 @@ export function AccountRequest() {
   useEffect(() => {
     window.addEventListener('beforeunload', handleUnmount);
     return () => window.removeEventListener('beforeunload', handleUnmount);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -61,7 +61,7 @@ export type RpcResponseArgs = RpcSuccessResponseArgs | RpcErrorResponseArgs;
 
 export enum RpcMethods {
   stx_requestAccounts,
-  stx_testAnotherMethod,
+  stx_signTransactionRequest,
 }
 
 export type RpcMethodNames = keyof typeof RpcMethods;
@@ -73,9 +73,9 @@ interface RpcMessage<Method extends RpcMethodNames, Params = void> {
 }
 
 type RequestAccounts = RpcMessage<'stx_requestAccounts'>;
-type TestAction = RpcMessage<'stx_testAnotherMethod'>;
+type SignTransactionRequest = RpcMessage<'stx_signTransactionRequest'>;
 
-export type SupportedRpcMessages = RequestAccounts | TestAction;
+export type SupportedRpcMessages = RequestAccounts | SignTransactionRequest;
 
 //
 // Deprecated methods

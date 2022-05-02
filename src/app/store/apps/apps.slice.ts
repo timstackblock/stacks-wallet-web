@@ -1,4 +1,5 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '..';
 
 interface AppDetails {
   domain: string;
@@ -15,3 +16,9 @@ export const appsSlice = createSlice({
     appConnected: appsAdapter.addOne,
   },
 });
+
+const selectApps = (state: RootState) => state.apps;
+
+export const appsSelectors = appsAdapter.getSelectors(selectApps);
+
+export const selectAllowedDomains = appsSelectors.selectAll;

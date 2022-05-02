@@ -25,11 +25,11 @@ import { WelcomePage } from '@app/pages/onboarding/welcome/welcome';
 import { useHasStateRehydrated } from '@app/store';
 import { UnauthorizedRequest } from '@app/pages/unauthorized-request/unauthorized-request';
 import { RouteUrls } from '@shared/route-urls';
+import { AccountRequest } from '@app/pages/choose-account-request/account-request';
 
 import { useOnWalletLock } from './hooks/use-on-wallet-lock';
 import { useOnSignOut } from './hooks/use-on-sign-out';
 import { OnboardingGate } from './onboarding-gate';
-import { AccountRequest } from '@app/pages/choose-account-request/account-request';
 
 export function AppRoutes(): JSX.Element | null {
   const { pathname } = useLocation();

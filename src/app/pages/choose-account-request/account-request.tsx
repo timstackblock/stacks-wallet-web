@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { logger } from '@shared/logger';
 
+import { logger } from '@shared/logger';
 import { useRouteHeader } from '@app/common/hooks/use-route-header';
 import { useAppDetails } from '@app/common/hooks/auth/use-app-details';
 import { Header } from '@app/components/header';
@@ -14,6 +14,7 @@ import {
 import { useUserGrantsPermissionToAppDomain } from '@app/store/apps/apps.actions';
 
 import { useAccountRequestSearchParams } from './use-account-request-search-params';
+import { delay } from '@app/common/utils';
 
 export function AccountRequest() {
   const accounts = useAccounts();
@@ -24,7 +25,7 @@ export function AccountRequest() {
 
   useRouteHeader(<Header hideActions />);
 
-  const returnAccountDetailsToApp = (index: number) => {
+  const returnAccountDetailsToApp = async (index: number) => {
     if (!accounts) throw new Error('Cannot request account details with no account');
 
     if (!tabId || !id || !origin) {
@@ -36,6 +37,7 @@ export function AccountRequest() {
 
     grantDomainPermission(origin);
     sendRequestAccountResponseToTab({ tabId, id, account: accounts[index] });
+    await delay(1000);
     window.close();
   };
 
@@ -56,8 +58,8 @@ export function AccountRequest() {
   return (
     <AccountPickerLayout appName={appName}>
       <AccountPicker
-        onAccountSelected={index => returnAccountDetailsToApp(index)}
         selectedAccountIndex={null}
+        onAccountSelected={index => returnAccountDetailsToApp(index)}
       />
     </AccountPickerLayout>
   );

@@ -16,8 +16,10 @@ import { PostConditions } from '@app/pages/transaction-request/components/post-c
 import { StxTransferDetails } from '@app/pages/transaction-request/components/stx-transfer-details/stx-transfer-details';
 import { PostConditionModeWarning } from '@app/pages/transaction-request/components/post-condition-mode-warning';
 import { TransactionError } from '@app/pages/transaction-request/components/transaction-error/transaction-error';
+import { useIsDomainPreApproved } from '@app/store/apps/apps.actions';
 import {
   useTransactionRequestState,
+  useTransactionRequestValidation,
   useUpdateTransactionBroadcastError,
 } from '@app/store/transactions/requests.hooks';
 import {
@@ -31,6 +33,8 @@ import { SubmitAction } from './components/submit-action';
 import { useUnsignedTransactionFee } from './hooks/use-signed-transaction-fee';
 import { useAnalytics } from '@app/common/hooks/analytics/use-analytics';
 import { Estimations } from '@shared/models/fees-types';
+import { ErrorMessage } from './components/transaction-error/error-message';
+import { useTransactionValidator } from './hooks/use-transaction-validator';
 
 function TransactionRequestBase(): JSX.Element | null {
   useNextTxNonce();
@@ -43,6 +47,9 @@ function TransactionRequestBase(): JSX.Element | null {
   const { isSponsored } = useUnsignedTransactionFee();
   const feeSchema = useFeeSchema();
   const analytics = useAnalytics();
+  // const isValidTransaction = useTransactionRequestValidation();
+  // const isDomainApproved = useIsDomainPreApproved();
+  const txValidationResult = useTransactionValidator();
 
   const validationSchema = !isSponsored ? yup.object({ fee: feeSchema() }) : null;
 
@@ -92,6 +99,12 @@ function TransactionRequestBase(): JSX.Element | null {
       <PageTop />
       <PostConditionModeWarning />
       <TransactionError />
+      {/* {isValidTransaction ? null : (
+        <ErrorMessage
+          title="Unsigned transaction"
+          body="This transaction has been made from an unsigned source"
+        />
+      )} */}
       <PostConditions />
       {transactionRequest.txType === 'contract_call' && <ContractCallDetails />}
       {transactionRequest.txType === 'token_transfer' && <StxTransferDetails />}

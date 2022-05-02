@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { atomWithStore } from 'jotai/redux';
 import devToolsEnhancer from 'remote-redux-devtools';
+
 import { AnyAction, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import {
   persistStore,
@@ -35,6 +36,15 @@ const rootReducer = combineReducers({
   analytics: analyticsSlice.reducer,
 });
 
+const logger = store => next => action => {
+  console.group(action.type);
+  console.info('dispatching', action);
+  let result = next(action);
+  console.log('next state', store.getState());
+  console.groupEnd();
+  return result;
+};
+
 const persistConfig = {
   key: 'root',
   version: 1,
@@ -48,6 +58,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware => [
+    logger,
     ...getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

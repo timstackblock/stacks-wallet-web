@@ -26,6 +26,8 @@ function SubmitActionSuspense(): JSX.Element {
   const { isLoading } = useLoading(LoadingKeys.SUBMIT_TRANSACTION);
   const error = useTransactionError();
 
+  console.log({ error, name: TransactionErrorReason[error] });
+
   const isDisabled = !!error;
 
   return (

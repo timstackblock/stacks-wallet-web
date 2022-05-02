@@ -8,6 +8,11 @@ import { Counter } from './counter';
 import { Debugger } from './debugger';
 import { Bns } from './bns';
 import { getStacksProvider } from '@stacks/connect';
+import { useConnect } from '@stacks/connect-react';
+
+import { stacksTestnetNetwork as network } from '@common/utils';
+import { getAddressFromPublicKey } from '@stacks/transactions';
+import { TransactionVersion } from '@stacks/common';
 
 type Tabs = 'status' | 'counter' | 'debug' | 'bns';
 
@@ -53,6 +58,7 @@ const Page: React.FC<{ tab: Tabs; setTab: (value: Tabs) => void }> = ({ tab, set
 export const Home: React.FC = () => {
   const state = useContext(AppContext);
   const [tab, setTab] = useState<Tabs>('debug');
+  const { doSTXTransfer } = useConnect();
   const [account, setAccount] = useState<any>(null);
   return (
     <Container>
@@ -74,6 +80,70 @@ export const Home: React.FC = () => {
       >
         Request accounts
       </Button>
+      <Button
+        my="base"
+        ml="base"
+        // isDisabled={account === null}
+        onClick={() => {
+          // getStacksProvider()
+          //   .request('stx_signTransactionRequest', [{}])
+          //   .then(resp => {
+          //     // setAccount(resp);
+          //     console.log('transaction req from inpage', resp);
+          //   });
+          // const stxAddress = getAddressFromPublicKey(
+          //   account[0].stxPublicKey,
+          //   TransactionVersion.Testnet
+          // );
+          // console.log({ stxAddress });
+          doSTXTransfer({
+            network: network as any,
+            amount: '100',
+            memo: 'From demo app',
+            recipient: 'ST1X6M947Z7E58CNE0H8YJVJTVKS9VW0PHEG3NHN3',
+            stxAddress: 'ST17YZQB1228EK9MPHQXA8GC4G3HVWZ66X779FEBY',
+            // stxAddress,
+            onFinish: data => {
+              console.log('finished stx transfer!', data);
+            },
+            onCancel: () => {
+              console.log('popup closed!');
+            },
+          });
+        }}
+      >
+        Sign transaction
+      </Button>
+
+      {/* <Button
+        my="base"
+        ml="base"
+        onClick={() => {
+          // getStacksProvider()
+          //   .request('stx_signTransactionRequest', [{}])
+          //   .then(resp => {
+          //     // setAccount(resp);
+          //     console.log('transaction req from inpage', resp);
+          //   });
+
+          // console.log({ stxAddress });
+          doSTXTransfer({
+            network: network as any,
+            amount: '100',
+            memo: 'From demo app',
+            recipient: 'ST1X6M947Z7E58CNE0H8YJVJTVKS9VW0PHEG3NHN3',
+            stxAddress: 'ST17YZQB1228EK9MPHQXA8GC4G3HVWZ66X779FEBY',
+            onFinish: data => {
+              console.log('finished stx transfer!', data);
+            },
+            onCancel: () => {
+              console.log('popup closed!');
+            },
+          });
+        }}
+      >
+        Sign transaction (before `stx_requestAccounts`)
+      </Button> */}
       <br />
       {account !== null && <pre>{JSON.stringify(account, null, 2)}</pre>}
     </Container>

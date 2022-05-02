@@ -76,7 +76,9 @@ const HTML_PROD_OPTIONS = IS_DEV
       },
     };
 
-const aliases = {};
+const aliases = {
+  '@stacks/connect': path.resolve('./.yalc/@stacks/connect'),
+};
 
 const config = {
   entry: { index: path.join(SRC_ROOT_PATH, 'index.tsx') },

@@ -104,6 +104,8 @@ export const currentAccountState = atom<SoftwareWalletAccountWithAddress | undef
   const hasSwitched = get(hasSwitchedAccountsState);
   const accounts = get(accountsWithAddressState);
 
+  console.log({ accountIndex, txIndex, hasSwitched, accounts });
+
   if (!accounts) return undefined;
   if (typeof txIndex === 'number' && !hasSwitched) return accounts[txIndex];
   return accounts[accountIndex];

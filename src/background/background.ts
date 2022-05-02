@@ -21,6 +21,7 @@ import {
   inferLegacyMessage,
 } from './legacy-external-message-handler';
 import { popupCenter } from './popup-center';
+import { StorageKey, storePayload } from '@shared/utils/storage';
 
 initSentry();
 initContextMenuActions();
@@ -54,14 +55,36 @@ chrome.runtime.onConnect.addListener(port =>
         if (!port.sender?.tab?.id)
           return logger.error('Message reached background script without a corresponding tab');
 
+        if (!port.sender?.origin)
+          return logger.error('Message reached background script without a corresponding origin');
+
         switch (message.method) {
           case RpcMethods[RpcMethods.stx_requestAccounts]: {
             const params = new URLSearchParams();
+            console.log(port.sender);
             params.set('tabId', port.sender.tab.id.toString());
             params.set('id', message.id);
+            params.set('origin', port.sender.origin.toString());
             popupCenter({
               url: `/popup-center.html#${RouteUrls.AccountRequest}?${params.toString()}`,
             });
+            break;
+          }
+          case RpcMethods[RpcMethods.stx_signTransactionRequest]: {
+            console.log('sign tx request');
+            const { params } = message;
+
+            void storePayload({
+              payload,
+              storageKey: StorageKey.transactionRequests,
+              port,
+            });
+            const path = RouteUrls.TransactionRequest;
+            const urlParams = new URLSearchParams();
+            urlParams.set('request', payload);
+
+            popupCenter({ url: `/popup-center.html#${path}?${urlParams.toString()}` });
+
             break;
           }
         }

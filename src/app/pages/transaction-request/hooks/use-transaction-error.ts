@@ -7,29 +7,34 @@ import { TransactionErrorReason } from '@app/pages/transaction-request/component
 import { useContractInterface } from '@app/query/contract/contract.hooks';
 import { TransactionTypes } from '@stacks/connect';
 import { useCurrentAccountAvailableStxBalance } from '@app/store/accounts/account.hooks';
-import { useOrigin } from '@app/store/transactions/requests.hooks';
+import { useTransactionRequestOrigin } from '@app/store/transactions/requests.hooks';
 import {
   useTransactionBroadcastError,
   useTransactionRequestState,
-  useTransactionRequestValidation,
 } from '@app/store/transactions/requests.hooks';
 
 import { useUnsignedTransactionFee } from './use-signed-transaction-fee';
+import { useTransactionValidator } from './use-transaction-validator';
 
 export function useTransactionError() {
   const transactionRequest = useTransactionRequestState();
   const contractInterface = useContractInterface(transactionRequest);
   const fee = useUnsignedTransactionFee();
   const broadcastError = useTransactionBroadcastError();
-  const isValidTransaction = useTransactionRequestValidation();
-  const origin = useOrigin();
+
+  const txValidationResult = useTransactionValidator();
+
+  const origin = useTransactionRequestOrigin();
 
   const { currentAccount } = useWallet();
   const availableStxBalance = useCurrentAccountAvailableStxBalance();
 
   return useMemo<TransactionErrorReason | void>(() => {
+    console.log({ transactionRequest, availableStxBalance, currentAccount });
+
     if (origin === false) return TransactionErrorReason.ExpiredRequest;
-    if (isValidTransaction === false) return TransactionErrorReason.Unauthorized;
+
+    if (!txValidationResult.isValid) return TransactionErrorReason.Unauthorized;
 
     if (!transactionRequest || !availableStxBalance || !currentAccount) {
       return TransactionErrorReason.Generic;
@@ -63,13 +68,13 @@ export function useTransactionError() {
     }
     return;
   }, [
-    fee,
-    broadcastError,
-    contractInterface,
+    origin,
+    txValidationResult.isValid,
+    transactionRequest,
     availableStxBalance,
     currentAccount,
-    transactionRequest,
-    isValidTransaction,
-    origin,
+    broadcastError,
+    contractInterface.isError,
+    fee,
   ]);
 }

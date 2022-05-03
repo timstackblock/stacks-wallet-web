@@ -33,7 +33,6 @@ export function SettingsDropdown() {
   const key = useCurrentKeyDetails();
 
   const handleClose = useCallback(() => setShowSettings(false), [setShowSettings]);
-  const accounts = useAccounts();
 
   const wrappedCloseCallback = useCallback(
     (callback: () => void) => () => {
@@ -101,47 +100,30 @@ export function SettingsDropdown() {
                 )}
               </>
             )}
-            <MenuItem
-              data-testid={SettingsSelectors.ChangeNetworkAction}
-              onClick={wrappedCloseCallback(() => {
-                void analytics.track('choose_to_change_network');
-                setShowNetworks(true);
-              })}
-            >
-              <Flex width="100%" alignItems="center" justifyContent="space-between">
-                <Box>Change Network</Box>
-                <Caption data-testid={SettingsSelectors.CurrentNetwork}>
-                  {currentNetworkKey}
-                </Caption>
-              </Flex>
-            </MenuItem>
-            {encryptedSecretKey && (
-              <>
-                <Divider />
-                {hasGeneratedWallet && (
-                  <MenuItem
-                    onClick={wrappedCloseCallback(() => {
-                      void analytics.track('lock_session');
-                      void lockWallet();
-                      navigate(RouteUrls.Unlock);
-                    })}
-                    data-testid="settings-lock"
-                  >
-                    Lock
-                  </MenuItem>
-                )}
-                <MenuItem
-                  color={color('feedback-error')}
-                  onClick={wrappedCloseCallback(() => {
-                    setShowSignOut(true);
-                    navigate(RouteUrls.SignOutConfirm);
-                  })}
-                  data-testid="settings-sign-out"
-                >
-                  Sign Out
-                </MenuItem>
-              </>
+
+            <Divider />
+            {hasGeneratedWallet && walletType === 'software' && (
+              <MenuItem
+                onClick={wrappedCloseCallback(() => {
+                  void analytics.track('lock_session');
+                  void lockWallet();
+                  navigate(RouteUrls.Unlock);
+                })}
+                data-testid="settings-lock"
+              >
+                Lock
+              </MenuItem>
             )}
+            <MenuItem
+              color={color('feedback-error')}
+              onClick={wrappedCloseCallback(() => {
+                setShowSignOut(true);
+                navigate(RouteUrls.SignOutConfirm);
+              })}
+              data-testid="settings-sign-out"
+            >
+              Sign Out
+            </MenuItem>
           </MenuWrapper>
         )}
       </SlideFade>

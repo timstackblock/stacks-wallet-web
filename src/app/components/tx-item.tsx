@@ -27,6 +27,7 @@ import {
   getTxValue,
   isAddressTransactionWithTransfers,
   StxTransfer,
+  truncateText,
 } from '@app/common/transactions/transaction-utils';
 import { useAnalytics } from '@app/common/hooks/analytics/use-analytics';
 import { useFungibleTokenMetadata } from '@app/query/tokens/fungible-token-metadata.hook';
@@ -288,9 +289,9 @@ export const TxItem = ({ transaction, ...rest }: TxItemProps) => {
       >
         <TxItemIcon transaction={transaction} />
         <SpaceBetween flexGrow={1}>
-          <Stack spacing="base-tight">
+          <Stack spacing="base-tight" whiteSpace="nowrap">
             <Title as="h3" fontWeight="normal">
-              {getTxTitle(transaction)}
+              {truncateText(getTxTitle(transaction), 20)}
             </Title>
             <Stack isInline flexWrap="wrap">
               <Caption variant="c2">{getTxCaption(transaction)}</Caption>

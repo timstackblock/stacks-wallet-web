@@ -110,7 +110,7 @@ export function createTxDateFormatList(
 export const getTxCaption = (transaction: Tx) => {
   switch (transaction.tx_type) {
     case 'smart_contract':
-      return truncateMiddle(transaction.smart_contract.contract_id, 4);
+      return truncateMiddle(transaction.smart_contract.contract_id.split('.')[0], 4);
     case 'contract_call':
       return transaction.contract_call.contract_id.split('.')[1];
     case 'token_transfer':
@@ -141,6 +141,13 @@ export const getTxValue = (tx: Tx, isOriginator: boolean): number | string | nul
   if (transfer) return new BigNumber(transfer.asset.amount).toFormat();
   return null;
 };
+
+export function truncateText(text: string, length: number) {
+  if (text.length <= length) {
+    return text;
+  }
+  return text.substring(0, length) + '\u2026';
+}
 
 export const getTxTitle = (tx: Tx) => {
   switch (tx.tx_type) {
